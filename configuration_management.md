@@ -78,7 +78,7 @@ eShopOnContainers mobile app connects to:
 public static class Settings\
 {\
     \...\
-    private const string IdUrlBase = \"url_base\";\
+    private const string IdUrlBase = "url_base";\
     private static readonly string UrlBaseDefault = GlobalSetting.Instance.BaseEndpoint;\
     \...\
 \
@@ -128,16 +128,16 @@ public class GlobalSetting\
 \
     private void UpdateEndpoint(string baseEndpoint)\
     {\
-        RegisterWebsite = string.Format(\"{0}:5105/Account/Register\", baseEndpoint);\
-        CatalogEndpoint = string.Format(\"{0}:5101\", baseEndpoint);\
-        OrdersEndpoint = string.Format(\"{0}:5102\", baseEndpoint);\
-        BasketEndpoint = string.Format(\"{0}:5103\", baseEndpoint);\
-        IdentityEndpoint = string.Format(\"{0}:5105/connect/authorize\", baseEndpoint);\
-        UserInfoEndpoint = string.Format(\"{0}:5105/connect/userinfo\", baseEndpoint);\
-        TokenEndpoint = string.Format(\"{0}:5105/connect/token\", baseEndpoint);\
-        LogoutEndpoint = string.Format(\"{0}:5105/connect/endsession\", baseEndpoint);\
-        IdentityCallback = string.Format(\"{0}:5105/xamarincallback\", baseEndpoint);\
-        LogoutCallback = string.Format(\"{0}:5105/Account/Redirecting\", baseEndpoint);\
+        RegisterWebsite = string.Format("{0}:5105/Account/Register", baseEndpoint);\
+        CatalogEndpoint = string.Format("{0}:5101", baseEndpoint);\
+        OrdersEndpoint = string.Format("{0}:5102", baseEndpoint);\
+        BasketEndpoint = string.Format("{0}:5103", baseEndpoint);\
+        IdentityEndpoint = string.Format("{0}:5105/connect/authorize", baseEndpoint);\
+        UserInfoEndpoint = string.Format("{0}:5105/connect/userinfo", baseEndpoint);\
+        TokenEndpoint = string.Format("{0}:5105/connect/token", baseEndpoint);\
+        LogoutEndpoint = string.Format("{0}:5105/connect/endsession", baseEndpoint);\
+        IdentityCallback = string.Format("{0}:5105/xamarincallback", baseEndpoint);\
+        LogoutCallback = string.Format("{0}:5105/Account/Redirecting", baseEndpoint);\
     }\
 }
 
@@ -176,7 +176,7 @@ The following code example shows the Entry control from the SettingsView
 that allows the user to enter a base endpoint URL for the containerized
 microservices:
 
-\<Entry Text=\"{Binding Endpoint, Mode=TwoWay}\" /\>
+\<Entry Text="{Binding Endpoint, Mode=TwoWay}" /\>
 
 This Entry control binds to the Endpoint property of the
 SettingsViewModel class, using a two-way binding. The following code

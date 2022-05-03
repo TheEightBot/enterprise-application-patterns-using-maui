@@ -93,7 +93,7 @@ public class EmailRule\<T\> : IValidationRule\<T\>\
         }\
 \
         var str = value as string;\
-        Regex regex = new Regex(@\"\^(\[\\w\\.\\-\]+)@(\[\\w\\-\]+)((\\.(\\w){2,3})+)\$\");\
+        Regex regex = new Regex(@"\^(\[\\w\\.\\-\]+)@(\[\\w\\-\]+)((\\.(\\w){2,3})+)\$");\
         Match match = regex.Match(str);\
 \
         return match.Success;\
@@ -156,11 +156,11 @@ private void AddValidations()\
 {\
     \_userName.Validations.Add(new IsNotNullOrEmptyRule\<string\> \
     { \
-        ValidationMessage = \"A username is required.\" \
+        ValidationMessage = "A username is required." \
     });\
     \_password.Validations.Add(new IsNotNullOrEmptyRule\<string\> \
     { \
-        ValidationMessage = \"A password is required.\" \
+        ValidationMessage = "A password is required." \
     });\
 }
 
@@ -237,11 +237,11 @@ changes. For example, when a two-way binding in the LoginView sets the
 UserName or Password property, validation is triggered. The following
 code example demonstrates how this occurs:
 
-\<Entry Text=\"{Binding UserName.Value, Mode=TwoWay}\"\>\
+\<Entry Text="{Binding UserName.Value, Mode=TwoWay}"\>\
     \<Entry.Behaviors\>\
         \<behaviors:EventToCommandBehavior\
-            EventName=\"TextChanged\"\
-            Command=\"{Binding ValidateUserNameCommand}\" /\>\
+            EventName="TextChanged"\
+            Command="{Binding ValidateUserNameCommand}" /\>\
     \</Entry.Behaviors\>\
     \...\
 \</Entry\>
@@ -281,12 +281,12 @@ controls where validation errors have occurred. The following code
 example shows how the LineColorBehavior attached behavior is attached to
 an Entry control:
 
-\<Entry Text=\"{Binding UserName.Value, Mode=TwoWay}\"\>\
+\<Entry Text="{Binding UserName.Value, Mode=TwoWay}"\>\
     \<Entry.Style\>\
-        \<OnPlatform x:TypeArguments=\"Style\"\
-          iOS=\"{StaticResource EntryStyle}\"\
-          Android=\"{StaticResource EntryStyle}\"\
-          WinPhone=\"{StaticResource UwpEntryStyle}\"/\>\
+        \<OnPlatform x:TypeArguments="Style"\
+          iOS="{StaticResource EntryStyle}"\
+          Android="{StaticResource EntryStyle}"\
+          WinPhone="{StaticResource UwpEntryStyle}"/\>\
     \</Entry.Style\>\
     \...\
 \</Entry\>
@@ -294,13 +294,13 @@ an Entry control:
 The Entry control consumes an explicit style, which is shown in the
 following code example:
 
-\<Style x:Key=\"EntryStyle\"\
-       TargetType=\"{x:Type Entry}\"\>\
+\<Style x:Key="EntryStyle"\
+       TargetType="{x:Type Entry}"\>\
     \...\
-    \<Setter Property=\"behaviors:LineColorBehavior.ApplyLineColor\"\
-            Value=\"True\" /\>\
-    \<Setter Property=\"behaviors:LineColorBehavior.LineColor\"\
-            Value=\"{StaticResource BlackColor}\" /\>\
+    \<Setter Property="behaviors:LineColorBehavior.ApplyLineColor"\
+            Value="True" /\>\
+    \<Setter Property="behaviors:LineColorBehavior.LineColor"\
+            Value="{StaticResource BlackColor}" /\>\
     \...\
 \</Style\>
 
@@ -357,7 +357,7 @@ shown in the following code example:
 
 public class EntryLineColorEffect : RoutingEffect\
 {\
-    public EntryLineColorEffect() : base(\"eShopOnContainers.EntryLineColorEffect\")\
+    public EntryLineColorEffect() : base("eShopOnContainers.EntryLineColorEffect")\
     {\
     }\
 }
@@ -374,8 +374,8 @@ class.
 The following code example shows the
 eShopOnContainers.EntryLineColorEffect implementation for iOS:
 
-\[assembly: ResolutionGroupName(\"eShopOnContainers\")\]\
-\[assembly: ExportEffect(typeof(EntryLineColorEffect), \"EntryLineColorEffect\")\]\
+\[assembly: ResolutionGroupName("eShopOnContainers")\]\
+\[assembly: ExportEffect(typeof(EntryLineColorEffect), "EntryLineColorEffect")\]\
 namespace eShopOnContainers.iOS.Effects\
 {\
     public class EntryLineColorEffect : PlatformEffect\
@@ -391,7 +391,7 @@ namespace eShopOnContainers.iOS.Effects\
             }\
             catch (Exception ex)\
             {\
-                Console.WriteLine(\"Can't set property on attached control. Error: \", ex.Message);\
+                Console.WriteLine("Can't set property on attached control. Error: ", ex.Message);\
             }\
         }\
 \
@@ -405,7 +405,7 @@ namespace eShopOnContainers.iOS.Effects\
             base.OnElementPropertyChanged(args);\
 \
             if (args.PropertyName == LineColorBehavior.LineColorProperty.PropertyName \|\|\
-                args.PropertyName == \"Height\")\
+                args.PropertyName == "Height")\
             {\
                 Initialize();\
                 UpdateLineColor();\
@@ -466,15 +466,15 @@ there is no validation error. Figure 6-3 shows an example of this.
 The Entry control also has a DataTrigger added to its Triggers
 collection. The following code example shows the DataTrigger:
 
-\<Entry Text=\"{Binding UserName.Value, Mode=TwoWay}\"\>\
+\<Entry Text="{Binding UserName.Value, Mode=TwoWay}"\>\
     \...\
     \<Entry.Triggers\>\
         \<DataTrigger \
-            TargetType=\"Entry\"\
-            Binding=\"{Binding UserName.IsValid}\"\
-            Value=\"False\"\>\
-            \<Setter Property=\"behaviors:LineColorBehavior.LineColor\" \
-                    Value=\"{StaticResource ErrorColor}\" /\>\
+            TargetType="Entry"\
+            Binding="{Binding UserName.IsValid}"\
+            Value="False"\>\
+            \<Setter Property="behaviors:LineColorBehavior.LineColor" \
+                    Value="{StaticResource ErrorColor}" /\>\
         \</DataTrigger\>\
     \</Entry.Triggers\>\
 \</Entry\>
@@ -504,8 +504,8 @@ control whose data failed validation. The following code example shows
 the Label that displays a validation error message if the user has not
 entered a valid username:
 
-\<Label Text=\"{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}\"\
-       Style=\"{StaticResource ValidationErrorLabelStyle}\" /\>
+\<Label Text="{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}"\
+       Style="{StaticResource ValidationErrorLabelStyle}" /\>
 
 Each Label binds to the Errors property of the view model object that's
 being validated. The Errors property is provided by the

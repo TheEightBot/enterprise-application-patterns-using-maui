@@ -231,10 +231,10 @@ private async Task InternalNavigateToAsync(Type viewModelType, object para
 \
 private Type GetPageTypeForViewModel(Type viewModelType)\
 {\
-    var viewName = viewModelType.FullName.Replace(\"Model\", string.Empty);\
+    var viewName = viewModelType.FullName.Replace("Model", string.Empty);\
     var viewModelAssemblyName = viewModelType.GetTypeInfo().Assembly.FullName;\
     var viewAssemblyName = string.Format(\
-                CultureInfo.InvariantCulture, \"{0}, {1}\", viewName, viewModelAssemblyName);\
+                CultureInfo.InvariantCulture, "{0}, {1}", viewName, viewModelAssemblyName);\
     var viewType = Type.GetType(viewAssemblyName);\
     return viewType;\
 }\
@@ -244,7 +244,7 @@ private Page CreatePage(Type viewModelType, object parameter)\
     Type pageType = GetPageTypeForViewModel(viewModelType);\
     if (pageType == null)\
     {\
-        throw new Exception(\$\"Cannot locate page type for {viewModelType}\");\
+        throw new Exception(\$"Cannot locate page type for {viewModelType}");\
     }\
 \
     Page page = Activator.CreateInstance(pageType) as Page;\
@@ -264,7 +264,7 @@ which assumes that:
 
 - View models are in a .ViewModels child namespace.
 
-- View names correspond to view model names, with \"Model\" removed.
+- View names correspond to view model names, with "Model" removed.
 
 When a view is instantiated, it's associated with its corresponding
 view model. For more information about how this occurs, see
@@ -396,9 +396,9 @@ invoked by a behavior:
 \<WebView \...\>\
     \<WebView.Behaviors\>\
         \<behaviors:EventToCommandBehavior\
-            EventName=\"Navigating\"\
-            EventArgsConverter=\"{StaticResource WebNavigatingEventArgsConverter}\"\
-            Command=\"{Binding NavigateCommand}\" /\>\
+            EventName="Navigating"\
+            EventArgsConverter="{StaticResource WebNavigatingEventArgsConverter}"\
+            Command="{Binding NavigateCommand}" /\>\
     \</WebView.Behaviors\>\
 \</WebView\>
 

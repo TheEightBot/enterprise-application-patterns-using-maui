@@ -101,13 +101,13 @@ eShopOnContainers mobile app:
 public class MessengerKeys\
 {\
     // Add product to basket\
-    public const string AddProduct = \"AddProduct\";\
+    public const string AddProduct = "AddProduct";\
 \
     // Filter\
-    public const string Filter = \"Filter\";\
+    public const string Filter = "Filter";\
 \
     // Change selected Tab programmatically\
-    public const string ChangeTab = \"ChangeTab\";\
+    public const string ChangeTab = "ChangeTab";\
 }
 
 In this example, messages are defined using constants. The advantage of

@@ -128,7 +128,7 @@ following code example shows the GetCatalogAsync method:
 public async Task\<ObservableCollection\<CatalogItem\>\> GetCatalogAsync()\
 {\
     UriBuilder builder = new UriBuilder(GlobalSetting.Instance.CatalogEndpoint);\
-    builder.Path = \"api/v1/catalog/items\";\
+    builder.Path = "api/v1/catalog/items";\
     string uri = builder.ToString();\
 \
     CatalogRoot catalog = await \_requestProvider.GetAsync\<CatalogRoot\>(uri);\
@@ -150,7 +150,7 @@ injection](#introduction-to-dependency-injection).
 The following code example shows the GetAsync method in the
 RequestProvider class:
 
-public async Task\<TResult\> GetAsync\<TResult\>(string uri, string token = \"\")\
+public async Task\<TResult\> GetAsync\<TResult\>(string uri, string token = "")\
 {\
     HttpClient httpClient = CreateHttpClient(token);\
     HttpResponseMessage response = await httpClient.GetAsync(uri);\
@@ -175,16 +175,16 @@ object, and returned to the CatalogService.
 
 The CreateHttpClient method is shown in the following code example:
 
-private HttpClient CreateHttpClient(string token = \"\")\
+private HttpClient CreateHttpClient(string token = "")\
 {\
     var httpClient = new HttpClient();\
     httpClient.DefaultRequestHeaders.Accept.Add(\
-        new MediaTypeWithQualityHeaderValue(\"application/json\"));\
+        new MediaTypeWithQualityHeaderValue("application/json"));\
 \
     if (!string.IsNullOrEmpty(token))\
     {\
         httpClient.DefaultRequestHeaders.Authorization = \
-            new AuthenticationHeaderValue(\"Bearer\", token);\
+            new AuthenticationHeaderValue("Bearer", token);\
     }\
     return httpClient;\
 }
@@ -204,7 +204,7 @@ the Catalog.API project is invoked, which is shown in the following code
 example:
 
 \[HttpGet\]\
-\[Route(\"\[action\]\")\]\
+\[Route("\[action\]")\]\
 public async Task\<IActionResult\> Items(\
     \[FromQuery\]int pageSize = 10, \[FromQuery\]int pageIndex = 0)\
 {\
@@ -288,12 +288,12 @@ The following code example shows one of the PostAsync methods in the
 RequestProvider class:
 
 public async Task\<TResult\> PostAsync\<TResult\>(\
-    string uri, TResult data, string token = \"\", string header = \"\")\
+    string uri, TResult data, string token = "", string header = "")\
 {\
     HttpClient httpClient = CreateHttpClient(token);\
     \...\
     var content = new StringContent(JsonConvert.SerializeObject(data));\
-    content.Headers.ContentType = new MediaTypeHeaderValue(\"application/json\");\
+    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");\
     HttpResponseMessage response = await httpClient.PostAsync(uri, content);\
 \
     await HandleResponse(response);\
@@ -377,7 +377,7 @@ about authorization, see [Authorization](#authorization).
 The following code example shows the DeleteAsync method in the
 RequestProvider class:
 
-public async Task DeleteAsync(string uri, string token = \"\")\
+public async Task DeleteAsync(string uri, string token = "")\
 {\
     HttpClient httpClient = CreateHttpClient(token);\
     await httpClient.DeleteAsync(uri);\
@@ -394,7 +394,7 @@ HttpClient.DeleteAsync, the Delete method in the BasketController class
 in the Basket.API project is invoked, which is shown in the following
 code example:
 
-\[HttpDelete(\"{id}\")\]\
+\[HttpDelete("{id}")\]\
 public void Delete(string id)\
 {\
     \_repository.DeleteBasketAsync(id);\
@@ -510,22 +510,22 @@ mobile app uses the CachedImage control in the ProductTemplate, which is
 the data template used by the ListView control in the CatalogView:
 
 \<ffimageloading:CachedImage \
-    Grid.Row=\"0\"\
-    Source=\"{Binding PictureUri}\"     \
-    Aspect=\"AspectFill\"\>\
+    Grid.Row="0"\
+    Source="{Binding PictureUri}"     \
+    Aspect="AspectFill"\>\
     \<ffimageloading:CachedImage.LoadingPlaceholder\>\
         \<OnPlatform   \
-            x:TypeArguments=\"ImageSource\"\
-            iOS=\"default_product\"\
-            Android=\"default_product\"\
-            WinPhone=\"Assets/default_product.png\"/\>\
+            x:TypeArguments="ImageSource"\
+            iOS="default_product"\
+            Android="default_product"\
+            WinPhone="Assets/default_product.png"/\>\
     \</ffimageloading:CachedImage.LoadingPlaceholder\>\
     \<ffimageloading:CachedImage.ErrorPlaceholder\>\
         \<OnPlatform   \
-            x:TypeArguments=\"ImageSource\"\
-            iOS=\"noimage\"\
-            Android=\"noimage\"\
-            WinPhone=\"Assets/noimage.png\"/\>\
+            x:TypeArguments="ImageSource"\
+            iOS="noimage"\
+            Android="noimage"\
+            WinPhone="Assets/noimage.png"/\>\
     \</ffimageloading:CachedImage.ErrorPlaceholder\>\
 \</ffimageloading:CachedImage\>
 

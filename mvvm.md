@@ -12,7 +12,7 @@ There are three core components in the MVVM pattern: the model, the view, and th
 
 **Figure 2-1**: The MVVM pattern
 
-In addition to understanding the responsibilities of each components, it's also important to understand how they interact with each other. At a high level, the view \"knows about\" the view model, and the view model \"knows about\" the model, but the model is unaware of the view model, and the view model is unaware of the view. Therefore, the view model isolates the view from the model, and allows the model to evolve independently of the view.
+In addition to understanding the responsibilities of each components, it's also important to understand how they interact with each other. At a high level, the view "knows about" the view model, and the view model "knows about" the model, but the model is unaware of the view model, and the view model is unaware of the view. Therefore, the view model isolates the view from the model, and allows the model to evolve independently of the view.
 
 The benefits of using the MVVM pattern are as follows:
 
@@ -82,7 +82,7 @@ The following sections discuss the main approaches to connecting view models to 
 
 The simplest approach is for the view to declaratively instantiate its corresponding view model in XAML. When the view is constructed, the corresponding view model object will also be constructed. This approach is demonstrated in the following code example:
 
-\<ContentPage \... xmlns:local=\"clr-namespace:eShop\"\>\
+\<ContentPage \... xmlns:local="clr-namespace:eShop"\>\
     \<ContentPage.BindingContext\>\
         \<local:LoginViewModel /\>\
     \</ContentPage.BindingContext\>\
@@ -113,7 +113,7 @@ A view can be defined as a data template and associated with a view model type. 
 
 A view model locator is a custom class that manages the instantiation of view models and their association to views. In the eShopOnContainers mobile app, the ViewModelLocator class has an attached property, AutoWireViewModel, that's used to associate view models with views. In the view's XAML, this attached property is set to true to indicate that the view model should be automatically connected to the view, as shown in the following code example:
 
-viewModelBase:ViewModelLocator.AutoWireViewModel=\"true\"
+viewModelBase:ViewModelLocator.AutoWireViewModel="true"
 
 The AutoWireViewModel property is a bindable property that's initialized to false, and when its value changes the OnAutoWireViewModelChanged event handler is called. This method resolves the view model for the view. The following code example shows how this is achieved:
 
@@ -126,10 +126,10 @@ private static void OnAutoWireViewModelChanged(BindableObject bindable, obj
     }\
 \
     var viewType = view.GetType();\
-    var viewName = viewType.FullName.Replace(\".Views.\", \".ViewModels.\");\
+    var viewName = viewType.FullName.Replace(".Views.", ".ViewModels.");\
     var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;\
     var viewModelName = string.Format(\
-        CultureInfo.InvariantCulture, \"{0}Model, {1}\", viewName, viewAssemblyName);\
+        CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);\
 \
     var viewModelType = Type.GetType(viewModelName);\
     if (viewModelType == null)\
@@ -149,7 +149,7 @@ The OnAutoWireViewModelChanged method attempts to resolve the view model using a
 - View models are in a .ViewModels child namespace.
 
 - View model names correspond with view names and end with
-    \"ViewModel\".
+    "ViewModel".
 
 Finally, the OnAutoWireViewModelChanged method sets the BindingContext of the view type to the resolved view model type. For more information about resolving the view model type, see [Resolution](#resolution).
 
@@ -246,10 +246,10 @@ In both the Command and Command\<T\> classes, the delegate to the CanExecute met
 
 The following code example shows how a Grid in the LoginView binds to the RegisterCommand in the LoginViewModel class by using a TapGestureRecognizer instance:
 
-\<Grid Grid.Column=\"1\" HorizontalOptions=\"Center\"\>\
-    \<Label Text=\"REGISTER\" TextColor=\"Gray\"/\>\
+\<Grid Grid.Column="1" HorizontalOptions="Center"\>\
+    \<Label Text="REGISTER" TextColor="Gray"/\>\
     \<Grid.GestureRecognizers\>\
-        \<TapGestureRecognizer Command=\"{Binding RegisterCommand}\" NumberOfTapsRequired=\"1\" /\>\
+        \<TapGestureRecognizer Command="{Binding RegisterCommand}" NumberOfTapsRequired="1" /\>\
     \</Grid.GestureRecognizers\>\
 \</Grid\>
 
@@ -282,7 +282,7 @@ public class EventToCommandBehavior : BindableBehavior\<View\>\
             \_eventInfo = events.FirstOrDefault(e =\> e.Name == EventName);\
             if (\_eventInfo == null)\
                 throw new ArgumentException(string.Format(\
-                        \"EventToCommand: Can't find any event named '{0}' on attached type\", \
+                        "EventToCommand: Can't find any event named '{0}' on attached type", \
                         EventName));\
 \
             AddEventHandler(\_eventInfo, AssociatedObject, OnFired);\
@@ -320,9 +320,9 @@ The EventToCommandBehavior is particularly useful for attaching a command to a c
 \<ListView\>\
     \<ListView.Behaviors\>\
         \<behaviors:EventToCommandBehavior           \
-            EventName=\"ItemTapped\"\
-            Command=\"{Binding OrderDetailCommand}\"\
-            EventArgsConverter=\"{StaticResource ItemTappedEventArgsConverter}\" /\>\
+            EventName="ItemTapped"\
+            Command="{Binding OrderDetailCommand}"\
+            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}" /\>\
     \</ListView.Behaviors\>\
     \...\
 \</ListView\>

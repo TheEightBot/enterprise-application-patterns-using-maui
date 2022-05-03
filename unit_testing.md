@@ -169,7 +169,7 @@ public async Task SettingOrderPropertyShouldRaisePropertyChanged()\
 \
     orderViewModel.PropertyChanged += (sender, e) =\>\
     {\
-        if (e.PropertyName.Equals(\"Order\"))\
+        if (e.PropertyName.Equals("Order"))\
             invoked = true;\
     };\
     var order = await orderService.GetOrderAsync(1, GlobalSetting.Instance.AuthToken);\
@@ -226,7 +226,7 @@ public void InvalidEventNameShouldThrowArgumentExceptionText()\
 {\
     var behavior = new MockEventToCommandBehavior\
     {\
-        EventName = \"OnItemTapped\"\
+        EventName = "OnItemTapped"\
     };\
     var listView = new ListView();\
 \
@@ -261,8 +261,8 @@ demonstrated in the following code example:
 public void CheckValidationPassesWhenBothPropertiesHaveDataTest()\
 {\
     var mockViewModel = new MockViewModel();\
-    mockViewModel.Forename.Value = \"John\";\
-    mockViewModel.Surname.Value = \"Smith\";\
+    mockViewModel.Forename.Value = "John";\
+    mockViewModel.Surname.Value = "Smith";\
 \
     bool isValid = mockViewModel.Validate();\
 \
@@ -283,7 +283,7 @@ test that does this:
 public void CheckValidationFailsWhenOnlyForenameHasDataTest()\
 {\
     var mockViewModel = new MockViewModel();\
-    mockViewModel.Forename.Value = \"John\";\
+    mockViewModel.Forename.Value = "John";\
 \
     bool isValid = mockViewModel.Validate();\
 \

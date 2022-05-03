@@ -135,7 +135,7 @@ example from the eShopOnContainers reference application:
 public void ConfigureServices(IServiceCollection services)\
 {\
     \...\
-    services.AddIdentityServer(x =\> x.IssuerUri = \"null\")\
+    services.AddIdentityServer(x =\> x.IssuerUri = "null")\
         .AddSigningCredential(Certificate.Get())               \
         .AddAspNetIdentity\<ApplicationUser\>()\
         .AddConfigurationStore(builder =\>\
@@ -182,8 +182,8 @@ public static IEnumerable\<ApiResource\> GetApis()\
 {\
     return new List\<ApiResource\>\
     {\
-        new ApiResource(\"orders\", \"Orders Service\"),\
-        new ApiResource(\"basket\", \"Basket Service\")\
+        new ApiResource("orders", "Orders Service"),\
+        new ApiResource("basket", "Basket Service")\
     };\
 }
 
@@ -261,25 +261,25 @@ public static IEnumerable\<Client\> GetClients(Dictionary\<string,string\> c
         \...\
         new Client\
         {\
-            ClientId = \"xamarin\",\
-            ClientName = \"eShop Xamarin OpenId Client\",\
+            ClientId = "xamarin",\
+            ClientName = "eShop Xamarin OpenId Client",\
             AllowedGrantTypes = GrantTypes.Hybrid,\
             ClientSecrets =\
             {\
-                new Secret(\"secret\".Sha256())\
+                new Secret("secret".Sha256())\
             },\
-            RedirectUris = { clientsUrl\[\"Xamarin\"\] },\
+            RedirectUris = { clientsUrl\["Xamarin"\] },\
             RequireConsent = false,\
             RequirePkce = true,\
-            PostLogoutRedirectUris = { \$\"{clientsUrl\[\"Xamarin\"\]}/Account/Redirecting\" },\
-            AllowedCorsOrigins = { \"http://eshopxamarin\" },\
+            PostLogoutRedirectUris = { \$"{clientsUrl\["Xamarin"\]}/Account/Redirecting" },\
+            AllowedCorsOrigins = { "http://eshopxamarin" },\
             AllowedScopes = new List\<string\>\
             {\
                 IdentityServerConstants.StandardScopes.OpenId,\
                 IdentityServerConstants.StandardScopes.Profile,\
                 IdentityServerConstants.StandardScopes.OfflineAccess,\
-                \"orders\",\
-                \"basket\"\
+                "orders",\
+                "basket"\
             },\
             AllowOfflineAccess = true,\
             AllowAccessTokensViaBrowser = true\
@@ -421,18 +421,18 @@ public string CreateAuthorizationRequest()\
 \
     // Dictionary with values for the authorize request\
     var dic = new Dictionary\<string, string\>();\
-    dic.Add(\"client_id\", GlobalSetting.Instance.ClientId);\
-    dic.Add(\"client_secret\", GlobalSetting.Instance.ClientSecret); \
-    dic.Add(\"response_type\", \"code id_token\");\
-    dic.Add(\"scope\", \"openid profile basket orders locations marketing offline_access\");\
-    dic.Add(\"redirect_uri\", GlobalSetting.Instance.IdentityCallback);\
-    dic.Add(\"nonce\", Guid.NewGuid().ToString(\"N\"));\
-    dic.Add(\"code_challenge\", CreateCodeChallenge());\
-    dic.Add(\"code_challenge_method\", \"S256\");\
+    dic.Add("client_id", GlobalSetting.Instance.ClientId);\
+    dic.Add("client_secret", GlobalSetting.Instance.ClientSecret); \
+    dic.Add("response_type", "code id_token");\
+    dic.Add("scope", "openid profile basket orders locations marketing offline_access");\
+    dic.Add("redirect_uri", GlobalSetting.Instance.IdentityCallback);\
+    dic.Add("nonce", Guid.NewGuid().ToString("N"));\
+    dic.Add("code_challenge", CreateCodeChallenge());\
+    dic.Add("code_challenge_method", "S256");\
 \
     // Add CSRF token to protect against cross-site request forgery attacks.\
-    var currentCSRFToken = Guid.NewGuid().ToString(\"N\");\
-    dic.Add(\"state\", currentCSRFToken);\
+    var currentCSRFToken = Guid.NewGuid().ToString("N");\
+    dic.Add("state", currentCSRFToken);\
 \
     var authorizeUri = authorizeRequest.Create(dic); \
     return authorizeUri;\
@@ -569,7 +569,7 @@ The following code example shows the CreateLogoutRequest method:
 public string CreateLogoutRequest(string token)\
 {\
     \...\
-    return string.Format(\"{0}?id_token_hint={1}&post_logout_redirect_uri={2}\", \
+    return string.Format("{0}?id_token_hint={1}&post_logout_redirect_uri={2}", \
         GlobalSetting.Instance.LogoutEndpoint,\
         token,\
         GlobalSetting.Instance.LogoutCallback);\
@@ -683,11 +683,11 @@ eShopOnContainers reference application:
 
 protected virtual void ConfigureAuth(IApplicationBuilder app)\
 {\
-    var identityUrl = Configuration.GetValue\<string\>(\"IdentityUrl\");\
+    var identityUrl = Configuration.GetValue\<string\>("IdentityUrl");\
     app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions\
     {\
         Authority = identityUrl.ToString(),\
-        ScopeName = \"basket\",\
+        ScopeName = "basket",\
         RequireHttpsMetadata = false\
     });\
 } 
@@ -739,7 +739,7 @@ token must be included with the request. This is achieved by adding the
 access token to the headers of the HttpClient instance, as demonstrated
 in the following code example:
 
-httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(\"Bearer\", token);
+httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
 The DefaultRequestHeaders property of the HttpClient class exposes the
 headers that are sent with each request, and the access token is added
