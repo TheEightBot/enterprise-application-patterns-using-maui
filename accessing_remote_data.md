@@ -15,7 +15,7 @@ service.
 
 Representational State Transfer (REST) is an architectural style for
 building distributed systems based on hypermedia. A primary advantage of
-the REST model is that it\'s based on open standards and doesn\'t bind
+the REST model is that it's based on open standards and doesn't bind
 the implementation of the model or the client apps that access it to any
 specific implementation. Therefore, a REST web service could be
 implemented using Microsoft ASP.NET Core MVC, and client apps could be
@@ -53,7 +53,7 @@ request that returns data in the body of a message, it can specify the
 media types it can handle in the Accept header of the request. If the
 web server supports this media type, it can reply with a response that
 includes the Content-Type header that specifies the format of the data
-in the body of the message. It\'s then the responsibility of the client
+in the body of the message. It's then the responsibility of the client
 app to parse the response message and interpret the results in the
 message body appropriately.
 
@@ -105,8 +105,7 @@ dependency injection](#introduction-to-dependency-injection).
 Figure 10-1 shows the interaction of classes that read catalog data from
 the catalog microservice for displaying by the CatalogView.
 
-![](./media/image26.png){width="6.259722222222222in"
-height="4.861111111111111in"}
+![](./media/image26.png)
 
 **Figure 10-1**: Retrieving data from the catalog microservice
 
@@ -170,7 +169,7 @@ of the HttpClient class with the appropriate headers set. It then
 submits an asynchronous GET request to the resource identified by the
 URI, with the response being stored in the HttpResponseMessage instance.
 The HandleResponse method is then invoked, which throws an exception if
-the response doesn\'t include a success HTTP status code. Then the
+the response doesn't include a success HTTP status code. Then the
 response is read as a string, converted from JSON to a CatalogRoot
 object, and returned to the CatalogService.
 
@@ -194,7 +193,7 @@ This method creates a new instance of the HttpClient class, and sets the
 Accept header of any requests made by the HttpClient instance to
 application/json, which indicates that it expects the content of any
 response to be formatted using JSON. Then, if an access token was passed
-as an argument to the CreateHttpClient method, it\'s added to the
+as an argument to the CreateHttpClient method, it's added to the
 Authorization header of any requests made by the HttpClient instance,
 prefixed with the string Bearer. For more information about
 authorization, see [Authorization](#authorization).
@@ -246,8 +245,7 @@ injection](#introduction-to-dependency-injection).
 Figure 10-2 shows the interaction of classes that send the basket data
 displayed by the BasketView, to the basket microservice.
 
-![](./media/image27.png){width="6.259722222222222in"
-height="4.877083333333333in"}
+![](./media/image27.png)
 
 **Figure 10-2**: Sending data to the basket microservice
 
@@ -313,7 +311,7 @@ submits an asynchronous POST request to the resource identified by the
 URI, with the serialized basket data being sent in JSON format, and the
 response being stored in the HttpResponseMessage instance. The
 HandleResponse method is then invoked, which throws an exception if the
-response doesn\'t include a success HTTP status code. Then, the response
+response doesn't include a success HTTP status code. Then, the response
 is read as a string, converted from JSON to a CustomerBasket object, and
 returned to the BasketService. For more information about the
 CreateHttpClient method, see [Making a GET
@@ -341,8 +339,7 @@ CustomerBasket instance.
 Figure 10-3 shows the interactions of classes that delete basket data
 from the basket microservice, for the CheckoutView.
 
-![](./media/image28.png){width="6.259722222222222in"
-height="3.1666666666666665in"}
+![](./media/image28.png)
 
 **Figure 10-3**: Deleting data from the basket microservice
 
@@ -409,21 +406,21 @@ delete the basket data from the Redis cache.
 # Caching data
 
 The performance of an app can be improved by caching frequently accessed
-data to fast storage that\'s located close to the app. If the fast
+data to fast storage that's located close to the app. If the fast
 storage is located closer to the app than the original source, then
 caching can significantly improve response times when retrieving data.
 
 The most common form of caching is read-through caching, where an app
-retrieves data by referencing the cache. If the data isn\'t in the
-cache, it\'s retrieved from the data store and added to the cache. Apps
+retrieves data by referencing the cache. If the data isn't in the
+cache, it's retrieved from the data store and added to the cache. Apps
 can implement read-through caching with the cache-aside pattern. This
 pattern determines whether the item is currently in the cache. If the
-item isn\'t in the cache, it\'s read from the data store and added to
+item isn't in the cache, it's read from the data store and added to
 the cache. For more information, see the
 [Cache-Aside](https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside)
 pattern on Microsoft Docs.
 
-**Tip:** Cache data that\'s read frequently and that changes
+**Tip:** Cache data that's read frequently and that changes
 infrequently
 
 This data can be added to the cache on demand the first time it is
@@ -434,14 +431,14 @@ satisfied by using the cache.
 Distributed applications, such as the eShopOnContainers reference
 application, should provide either or both of the following caches:
 
--   A shared cache, which can be accessed by multiple processes or
+- A shared cache, which can be accessed by multiple processes or
     machines.
 
--   A private cache, where data is held locally on the device running
+- A private cache, where data is held locally on the device running
     the app.
 
 The eShopOnContainers mobile app uses a private cache, where data is
-held locally on the device that\'s running an instance of the app. For
+held locally on the device that's running an instance of the app. For
 information about the cache used by the eShopOnContainers reference
 application, see [.NET Microservices: Architecture for Containerized
 .NET Applications](https://aka.ms/microservicesebook).
@@ -455,9 +452,9 @@ becomes unavailable.
 
 ## Managing data expiration
 
-It\'s impractical to expect that cached data will always be consistent
+It's impractical to expect that cached data will always be consistent
 with the original data. Data in the original data store might change
-after it\'s been cached, causing the cached data to become stale.
+after it's been cached, causing the cached data to become stale.
 Therefore, apps should implement a strategy that helps to ensure that
 the data in the cache is as up-to-date as possible, but can also detect
 and handle situations that arise when the data in the cache has become
@@ -468,10 +465,10 @@ date.
 **Tip:** Set a default expiration time when configuring a cache
 
 Many caches implement expiration, which invalidates data and removes it
-from the cache if it\'s not accessed for a specified period. However,
-care must be taken when choosing the expiration period. If it\'s made
+from the cache if it's not accessed for a specified period. However,
+care must be taken when choosing the expiration period. If it's made
 too short, data will expire too quickly and the benefits of caching will
-be reduced. If it\'s made too long, the data risks becoming stale.
+be reduced. If it's made too long, the data risks becoming stale.
 Therefore, the expiration time should match the pattern of access for
 apps that use the data.
 
@@ -479,7 +476,7 @@ When cached data expires, it should be removed from the cache, and the
 app must retrieve the data from the original data store and place it
 back into the cache.
 
-It\'s also possible that a cache might fill up if data is allowed to
+It's also possible that a cache might fill up if data is allowed to
 remain for too long a period. Therefore, requests to add new items to
 the cache might be required to remove some items in a process known as
 *eviction*. Caching services typically evict data on a
@@ -504,7 +501,7 @@ CacheValidity property. For more information, see [Downloaded Image
 Caching](https://developer.xamarin.com/guides/xamarin-forms/user-interface/images/#Downloaded_Image_Caching)
 on the Xamarin Developer Center.
 
-FFImageLoading\'s CachedImage control is a replacement for the
+FFImageLoading's CachedImage control is a replacement for the
 Xamarin.Forms Image control, providing additional properties that enable
 supplementary functionality. Amongst this functionality, the control
 provides configurable caching, while supporting error and loading image
@@ -541,7 +538,7 @@ to retrieve the image specified by the Source property.
 
 As the name implies, the CachedImage control caches remote images on the
 device for the time specified by the value of the CacheDuration
-property. When this property value isn\'t explicitly set, the default
+property. When this property value isn't explicitly set, the default
 value of 30 days is applied.
 
 # Increasing resilience
@@ -551,21 +548,21 @@ sensitive to transient faults. Transient faults include the momentary
 loss of network connectivity to services, the temporary unavailability
 of a service, or timeouts that arise when a service is busy. These
 faults are often self-correcting, and if the action is repeated after a
-suitable delay it\'s likely to succeed.
+suitable delay it's likely to succeed.
 
 Transient faults can have a huge impact on the perceived quality of an
 app, even if it has been thoroughly tested under all foreseeable
 circumstances. To ensure that an app that communicates with remote
 services operates reliably, it must be able to do all of the following:
 
--   Detect faults when they occur, and determine if the faults are
+- Detect faults when they occur, and determine if the faults are
     likely to be transient.
 
--   Retry the operation if it determines that the fault is likely to be
+- Retry the operation if it determines that the fault is likely to be
     transient and keep track of the number of times the operation was
     retried.
 
--   Use an appropriate retry strategy, which specifies the number of
+- Use an appropriate retry strategy, which specifies the number of
     retries, the delay between each attempt, and the actions to take
     after a failed attempt.
 
@@ -577,34 +574,34 @@ to access a remote service in code that implements the retry pattern.
 If an app detects a failure when it tries to send a request to a remote
 service, it can handle the failure in any of the following ways:
 
--   Retrying the operation. The app could retry the failing request
+- Retrying the operation. The app could retry the failing request
     immediately.
 
--   Retrying the operation after a delay. The app should wait for a
+- Retrying the operation after a delay. The app should wait for a
     suitable amount of time before retrying the request.
 
--   Cancelling the operation. The application should cancel the
+- Cancelling the operation. The application should cancel the
     operation and report an exception.
 
 The retry strategy should be tuned to match the business requirements of
-the app. For example, it\'s important to optimize the retry count and
+the app. For example, it's important to optimize the retry count and
 retry interval to the operation being attempted. If the operation is
 part of a user interaction, the retry interval should be short and only
 a few retries attempted to avoid making users wait for a response. If
 the operation is part of a long running workflow, where cancelling or
-restarting the workflow is expensive or time-consuming, it\'s
+restarting the workflow is expensive or time-consuming, it's
 appropriate to wait longer between attempts and to retry more times.
 
 **Note:** An aggressive retry strategy with minimal delay between
 attempts, and a large number of retries, could degrade a remote service
-that\'s running close to or at capacity. In addition, such a retry
-strategy could also affect the responsiveness of the app if it\'s
+that's running close to or at capacity. In addition, such a retry
+strategy could also affect the responsiveness of the app if it's
 continually trying to perform a failing operation.
 
-If a request still fails after a number of retries, it\'s better for the
+If a request still fails after a number of retries, it's better for the
 app to prevent further requests going to the same resource and to report
 a failure. Then, after a set period, the app can make one or more
-requests to the resource to see if they\'re successful. For more
+requests to the resource to see if they're successful. For more
 information, see [Circuit breaker pattern](#circuit-breaker-pattern).
 
 **Tip:** Never implement an endless retry mechanism
@@ -621,7 +618,7 @@ library supports transient fault handling by retrying image loading. If
 image loading fails, further attempts will be made. The number of
 attempts is specified by the RetryCount property, and retries will occur
 after a delay specified by the RetryDelay property. If these property
-values aren\'t explicitly set, their default values are applied -- 3 for
+values aren't explicitly set, their default values are applied -- 3 for
 the RetryCount property, and 250ms for the RetryDelay property. For more
 information about the CachedImage control, see [Caching
 images](#caching-images).
@@ -641,18 +638,18 @@ pattern on Microsoft Docs.
 In some situations, faults can occur due to anticipated events that take
 longer to fix. These faults can range from a partial loss of
 connectivity to the complete failure of a service. In these situations,
-it\'s pointless for an app to retry an operation that\'s unlikely to
+it's pointless for an app to retry an operation that's unlikely to
 succeed, and instead should accept that the operation has failed and
 handle this failure accordingly.
 
 The circuit breaker pattern can prevent an app from repeatedly trying to
-execute an operation that\'s likely to fail, while also enabling the app
+execute an operation that's likely to fail, while also enabling the app
 to detect whether the fault has been resolved.
 
 **Note:** The purpose of the circuit breaker pattern is different from
 the retry pattern. The retry pattern enables an app to retry an
-operation in the expectation that it\'ll succeed. The circuit breaker
-pattern prevents an app from performing an operation that\'s likely to
+operation in the expectation that it'll succeed. The circuit breaker
+pattern prevents an app from performing an operation that's likely to
 fail.
 
 A circuit breaker acts as a proxy for operations that might fail. The
@@ -686,10 +683,10 @@ apps should be able to utilize the web API without knowing how the data
 or operations that the API exposes are implemented.
 
 The performance of an app can be improved by caching frequently accessed
-data to fast storage that\'s located close to the app. Apps can
+data to fast storage that's located close to the app. Apps can
 implement read-through caching with the cache-aside pattern. This
 pattern determines whether the item is currently in the cache. If the
-item isn\'t in the cache, it\'s read from the data store and added to
+item isn't in the cache, it's read from the data store and added to
 the cache.
 
 When communicating with web APIs, apps must be sensitive to transient
@@ -697,6 +694,6 @@ faults. Transient faults include the momentary loss of network
 connectivity to services, the temporary unavailability of a service, or
 timeouts that arise when a service is busy. These faults are often
 self-correcting, and if the action is repeated after a suitable delay,
-then it\'s likely to succeed. Therefore, apps should wrap all attempts
+then it's likely to succeed. Therefore, apps should wrap all attempts
 to access a web API in code that implements a transient fault handling
 mechanism.

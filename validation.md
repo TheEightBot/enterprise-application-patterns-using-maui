@@ -7,8 +7,9 @@ particular format. Without validation, a user can supply data that
 causes the app to fail. Validation enforces business rules, and prevents
 an attacker from injecting malicious data.
 
-![](./media/image8.png){width="6.259722222222222in"
-height="4.125694444444444in"}In the context of the Model-ViewModel-Model
+![](./media/image8.png)
+
+In the context of the Model-ViewModel-Model
 (MVVM) pattern, a view model or model will often be required to perform
 data validation and signal any validation errors to the view so that the
 user can correct them. The eShopOnContainers mobile app performs
@@ -104,7 +105,7 @@ argument is a valid email address. This is achieved by searching the
 value argument for the first occurrence of the regular expression
 pattern specified in the Regex constructor. Whether the regular
 expression pattern has been found in the input string can be determined
-by checking the value of the Match object\'s Success property.
+by checking the value of the Match object's Success property.
 
 **Note:** Property validation can sometimes involve dependent
 properties. An example of dependent properties is when the set of valid
@@ -165,7 +166,7 @@ private void AddValidations()\
 
 This method adds the IsNotNullOrEmptyRule\<T\> validation rule to the
 Validations collection of each ValidatableObject\<T\> instance,
-specifying values for the validation rule\'s ValidationMessage property,
+specifying values for the validation rule's ValidationMessage property,
 which specifies the validation error message that will be displayed if
 validation fails.
 
@@ -221,7 +222,7 @@ public bool Validate()\
 }
 
 This method clears the Errors collection, and then retrieves any
-validation rules that were added to the object\'s Validations
+validation rules that were added to the object's Validations
 collection. The Check method for each retrieved validation rule is
 executed, and the ValidationMessage property value for any validation
 rule that fails to validate the data is added to the Errors collection
@@ -246,7 +247,7 @@ code example demonstrates how this occurs:
 \</Entry\>
 
 The Entry control binds to the UserName.Value property of the
-ValidatableObject\<T\> instance, and the control\'s Behaviors collection
+ValidatableObject\<T\> instance, and the control's Behaviors collection
 has an EventToCommandBehavior instance added to it. This behavior
 executes the ValidateUserNameCommand in response to the TextChanged
 event firing on the Entry, which is raised when the text in the Entry
@@ -346,8 +347,8 @@ public static class LineColorBehavior\
 The parameters for this method provide the instance of the control that
 the behavior is attached to, and the old and new values of the
 ApplyLineColor attached property. The EntryLineColorEffect class is
-added to the control\'s Effects collection if the ApplyLineColor
-attached property is true, otherwise it\'s removed from the control\'s
+added to the control's Effects collection if the ApplyLineColor
+attached property is true, otherwise it's removed from the control's
 Effects collection. For more information about behaviors, see
 [Implementing behaviors](#implementing-behaviors).
 
@@ -362,12 +363,12 @@ public class EntryLineColorEffect : RoutingEffect\
 }
 
 The RoutingEffect class represents a platform-independent effect that
-wraps an inner effect that\'s platform-specific. This simplifies the
+wraps an inner effect that's platform-specific. This simplifies the
 effect removal process, since there is no compile-time access to the
 type information for a platform-specific effect. The
 EntryLineColorEffect calls the base class constructor, passing in a
 parameter consisting of a concatenation of the resolution group name,
-and the unique ID that\'s specified on each platform-specific effect
+and the unique ID that's specified on each platform-specific effect
 class.
 
 The following code example shows the
@@ -390,7 +391,7 @@ namespace eShopOnContainers.iOS.Effects\
             }\
             catch (Exception ex)\
             {\
-                Console.WriteLine(\"Can\'t set property on attached control. Error: \", ex.Message);\
+                Console.WriteLine(\"Can't set property on attached control. Error: \", ex.Message);\
             }\
         }\
 \
@@ -454,8 +455,9 @@ changes. For more information about effects, see
 [Effects](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/effects/)
 on the Xamarin Developer Center.
 
-![](./media/image10.png){width="6.259722222222222in"
-height="0.78125in"}When valid data is entered in the Entry control, it
+![](./media/image10.png)
+
+When valid data is entered in the Entry control, it
 will apply a black line to the bottom of the control, to indicate that
 there is no validation error. Figure 6-3 shows an example of this.
 
@@ -480,7 +482,7 @@ collection. The following code example shows the DataTrigger:
 ![](./media/image11.png)
 
 This DataTrigger monitors the
-UserName.IsValid property, and if it\'s value becomes false, it executes
+UserName.IsValid property, and if it's value becomes false, it executes
 the Setter, which changes the LineColor attached property of the
 LineColorBehavior attached behavior to red. Figure 6-4 shows an example
 of this.
@@ -505,7 +507,7 @@ entered a valid username:
 \<Label Text=\"{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}\"\
        Style=\"{StaticResource ValidationErrorLabelStyle}\" /\>
 
-Each Label binds to the Errors property of the view model object that\'s
+Each Label binds to the Errors property of the view model object that's
 being validated. The Errors property is provided by the
 ValidatableObject\<T\> class, and is of type List\<string\>. Because the
 Errors property can contain multiple validation errors, the

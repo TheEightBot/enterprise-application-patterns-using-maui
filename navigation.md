@@ -1,22 +1,22 @@
 # Navigation
 
 Xamarin.Forms includes support for page navigation, which typically
-results from the user\'s interaction with the UI or from the app itself
+results from the user's interaction with the UI or from the app itself
 as a result of internal logic-driven state changes. However, navigation
 can be complex to implement in apps that use the Model-View-ViewModel
 (MVVM) pattern, as the following challenges must be met:
 
--   How to identify the view to be navigated to, using an approach that
+- How to identify the view to be navigated to, using an approach that
     does not introduce tight coupling and dependencies between views.
 
--   How to coordinate the process by which the view to be navigated to
+- How to coordinate the process by which the view to be navigated to
     is instantiated and initialized. When using MVVM, the view and view
     model need to be instantiated and associated with each other via the
-    view\'s binding context. When an app is using a dependency injection
+    view's binding context. When an app is using a dependency injection
     container, the instantiation of views and view models might require
     a specific construction mechanism.
 
--   Whether to perform view-first navigation, or view model-first
+- Whether to perform view-first navigation, or view model-first
     navigation. With view-first navigation, the page to navigate to
     refers to the name of the view type. During navigation, the
     specified view is instantiated, along with its corresponding view
@@ -24,28 +24,28 @@ can be complex to implement in apps that use the Model-View-ViewModel
     use view model-first navigation, where the page to navigate to
     refers to the name of the view model type.
 
--   How to cleanly separate the navigational behavior of the app across
+- How to cleanly separate the navigational behavior of the app across
     the views and view models. The MVVM pattern provides a separation
-    between the app\'s UI and its presentation and business logic.
+    between the app's UI and its presentation and business logic.
     However, the navigation behavior of an app will often span the UI
     and presentations parts of the app. The user will often initiate
     navigation from a view, and the view will be replaced as a result of
     the navigation. However, navigation might often also need to be
     initiated or coordinated from within the view model.
 
--   How to pass parameters during navigation for initialization
+- How to pass parameters during navigation for initialization
     purposes. For example, if the user navigates to a view to update
     order details, the order data will have to be passed to the view so
     that it can display the correct data.
 
--   How to co-ordinate navigation, to ensure that certain business rules
+- How to co-ordinate navigation, to ensure that certain business rules
     are obeyed. For example, users might be prompted before navigating
     away from a view so that they can correct any invalid data or be
     prompted to submit or discard any data changes that were made within
     the view.
 
 This chapter addresses these challenges by presenting a
-NavigationService class that\'s used to perform view model-first page
+NavigationService class that's used to perform view model-first page
 navigation.
 
 **Note:** The NavigationService used by the app is designed only to
@@ -55,7 +55,7 @@ behavior.
 
 ## Navigating between pages
 
-Navigation logic can reside in a view\'s code-behind, or in a data bound
+Navigation logic can reside in a view's code-behind, or in a data bound
 view model. While placing navigation logic in a view might be the
 simplest approach, it is not easily testable through unit tests. Placing
 navigation logic in view model classes means that the logic can be
@@ -68,7 +68,7 @@ is valid.
 A NavigationService class is typically invoked from view models, in
 order to promote testability. However, navigating to views from view
 models would require the view models to reference views, and
-particularly views that the active view model isn\'t associated with,
+particularly views that the active view model isn't associated with,
 which is not recommended. Therefore, the NavigationService presented
 here specifies the view model type as the target to navigate to.
 
@@ -117,7 +117,7 @@ in the navigation stack.
 **Note:** An INavigationService interface would usually also specify a
 GoBackAsync method, which is used to programmatically return to the
 previous page in the navigation stack. However, this method is missing
-from the eShopOnContainers mobile app because it\'s not required.
+from the eShopOnContainers mobile app because it's not required.
 
 ## Creating the NavigationService instance
 
@@ -132,7 +132,7 @@ constructor, as demonstrated in the following code example:
 
 NavigationService = ViewModelLocator.Resolve\<INavigationService\>();
 
-This returns a reference to the NavigationService object that\'s stored
+This returns a reference to the NavigationService object that's stored
 in the Autofac dependency injection container, which is created by the
 InitNavigation method in the App class. For more information, see
 [Navigating when the app is
@@ -197,8 +197,8 @@ public Task NavigateToAsync\<TViewModel\>(object parameter) where TViewMode
 Each method allows any view model class that derives from the
 ViewModelBase class to perform hierarchical navigation by invoking the
 InternalNavigateToAsync method. In addition, the second NavigateToAsync
-method enables navigation data to be specified as an argument that\'s
-passed to the view model being navigated to, where it\'s typically used
+method enables navigation data to be specified as an argument that's
+passed to the view model being navigated to, where it's typically used
 to perform initialization. For more information, see [Passing parameters
 during navigation](#passing-parameters-during-navigation).
 
@@ -258,30 +258,30 @@ returns an instance of this view type. Locating the view that
 corresponds to the view model type uses a convention-based approach,
 which assumes that:
 
--   Views are in the same assembly as view model types.
+- Views are in the same assembly as view model types.
 
--   Views are in a .Views child namespace.
+- Views are in a .Views child namespace.
 
--   View models are in a .ViewModels child namespace.
+- View models are in a .ViewModels child namespace.
 
--   View names correspond to view model names, with \"Model\" removed.
+- View names correspond to view model names, with \"Model\" removed.
 
-When a view is instantiated, it\'s associated with its corresponding
+When a view is instantiated, it's associated with its corresponding
 view model. For more information about how this occurs, see
 [Automatically creating a view model with a view model
 locator](#automatically-creating-a-view-model-with-a-view-model-locator).
 
-If the view being created is a LoginView, it\'s wrapped inside a new
+If the view being created is a LoginView, it's wrapped inside a new
 instance of the CustomNavigationView class and assigned to the
 Application.Current.MainPage property. Otherwise, the
-CustomNavigationView instance is retrieved, and provided that it isn\'t
+CustomNavigationView instance is retrieved, and provided that it isn't
 null, the PushAsync method is invoked to push the view being created
 onto the navigation stack. However, If the retrieved
 CustomNavigationView instance is null, the view being created is wrapped
 inside a new instance of the CustomNavigationView class and assigned to
 the Application.Current.MainPage property. This mechanism ensures that
 during navigation, pages are added correctly to the navigation stack
-both when it\'s empty, and when it contains data.
+both when it's empty, and when it contains data.
 
 **Tip:** Consider caching pages
 
@@ -295,7 +295,7 @@ However, page caching might help if slow page loading times are
 encountered.
 
 After the view is created and navigated to, the InitializeAsync method
-of the view\'s associated view model is executed. For more information,
+of the view's associated view model is executed. For more information,
 see [Passing parameters during
 navigation](#passing-parameters-during-navigation).
 
@@ -341,11 +341,11 @@ injection](#introduction-to-dependency-injection).
 
 One of the NavigateToAsync methods, specified by the INavigationService
 interface, enables navigation data to be specified as an argument
-that\'s passed to the view model being navigated to, where it\'s
+that's passed to the view model being navigated to, where it's
 typically used to perform initialization.
 
 For example, the ProfileViewModel class contains an OrderDetailCommand
-that\'s executed when the user selects an order on the ProfileView page.
+that's executed when the user selects an order on the ProfileView page.
 In turn, this executes the OrderDetailAsync method, which is shown in
 the following code example:
 
@@ -358,9 +358,9 @@ This method invokes navigation to the OrderDetailViewModel, passing an
 Order instance that represents the order that the user selected on the
 ProfileView page. When the NavigationService class creates the
 OrderDetailView, the OrderDetailViewModel class is instantiated and
-assigned to the view\'s BindingContext. After navigating to the
+assigned to the view's BindingContext. After navigating to the
 OrderDetailView, the InternalNavigateToAsync method executes the
-InitializeAsync method of the view\'s associated view model.
+InitializeAsync method of the view's associated view model.
 
 The InitializeAsync method is defined in the ViewModelBase class as a
 method that can be overridden. This method specifies an object argument
@@ -406,7 +406,7 @@ At runtime, the EventToCommandBehavior will respond to interaction with
 the WebView. When the WebView navigates to a web page, the Navigating
 event will fire, which will execute the NavigateCommand in the
 LoginViewModel. By default, the event arguments for the event are passed
-to the command. This data is converted as it\'s passed between source
+to the command. This data is converted as it's passed between source
 and target by the converter specified in the EventArgsConverter
 property, which returns the Url from the WebNavigatingEventArgs.
 Therefore, when the NavigationCommand is executed, the Url of the web
@@ -440,7 +440,7 @@ notification to control whether or not navigation is invoked.
 ## Summary
 
 Xamarin.Forms includes support for page navigation, which typically
-results from the user\'s interaction with the UI, or from the app
+results from the user's interaction with the UI, or from the app
 itself, as a result of internal logic-driven state changes. However,
 navigation can be complex to implement in apps that use the MVVM
 pattern.

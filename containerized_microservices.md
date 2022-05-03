@@ -5,31 +5,29 @@ building tiered applications that use specific technologies in each
 tier. Such applications are often referred to as *monolithic*
 applications, and are packaged onto hardware pre-scaled for peak loads.
 The main drawbacks of this development approach are the tight coupling
-between components within each tier, that individual components can\'t
+between components within each tier, that individual components can't
 be easily scaled, and the cost of testing. A simple update can have
 unforeseen effects on the rest of the tier, and so a change to an
 application component requires its entire tier to be retested and
 redeployed.
 
 Particularly concerning in the age of the cloud, is that individual
-components can\'t be easily scaled. A monolithic application contains
+components can't be easily scaled. A monolithic application contains
 domain-specific functionality, and is typically divided by functional
 layers such as front end, business logic, and data storage. A monolithic
 application is scaled by cloning the entire application onto multiple
 machines, as illustrated in Figure 8-1.
 
-![](./media/image13.png){width="2.090551181102362in"
-height="3.3976377952755907in"}
+![](./media/image13.png)
 
 **Figure 8-1**: Monolithic application scaling approach
 
 ## Microservices
 
-Microservices offer a different approach to application development and
-deployment, an approach that\'s suited to the agility, scale, and
+Microservices offer a different approach to application development and deployment, an approach that's suited to the agility, scale, and
 reliability requirements of modern cloud applications. A microservices
 application is decomposed into independent components that work together
-to deliver the application\'s overall functionality. The term
+to deliver the application's overall functionality. The term
 microservice emphasizes that applications should be composed of services
 small enough to reflect independent concerns, so that each microservice
 implements a single function. In addition, each microservice has
@@ -38,8 +36,9 @@ share data with it. Typical examples of microservices include shopping
 carts, inventory processing, purchase subsystems, and payment
 processing.
 
-![](./media/image14.png){width="3.838582677165354in"
-height="3.090551181102362in"}Microservices can scale-out independently,
+![](./media/image14.png)
+
+Microservices can scale-out independently,
 as compared to giant monolithic applications that scale together. This
 means that a specific functional area, that requires more processing
 power or network bandwidth to support demand, can be scaled rather than
@@ -80,22 +79,22 @@ communicated with.
 Therefore, microservice applications have many benefits over monolithic
 applications:
 
--   Each microservice is relatively small, easy to manage and evolve.
+- Each microservice is relatively small, easy to manage and evolve.
 
--   Each microservice can be developed and deployed independently of
+- Each microservice can be developed and deployed independently of
     other services.
 
--   Each microservice can be scaled-out independently. For example, a
+- Each microservice can be scaled-out independently. For example, a
     catalog service or shopping basket service might need to be
     scaled-out more than an ordering service. Therefore, the resulting
     infrastructure will more efficiently consume resources when scaling
     out.
 
--   Each microservice isolates any issues. For example, if there is an
+- Each microservice isolates any issues. For example, if there is an
     issue in a service it only impacts that service. The other services
     can continue to handle requests.
 
--   Each microservice can use the latest technologies. Because
+- Each microservice can use the latest technologies. Because
     microservices are autonomous and run side-by-side, the latest
     technologies and frameworks can be used, rather than being forced to
     use an older framework that might be used by a monolithic
@@ -103,21 +102,21 @@ applications:
 
 However, a microservice based solution also has potential drawbacks:
 
--   Choosing how to partition an application into microservices can be
+- Choosing how to partition an application into microservices can be
     challenging, as each microservice has to be completely autonomous,
     end-to-end, including responsibility for its data sources.
 
--   Developers must implement inter-service communication, which adds
+- Developers must implement inter-service communication, which adds
     complexity and latency to the application.
 
--   Atomic transactions between multiple microservices usually aren\'t
+- Atomic transactions between multiple microservices usually aren't
     possible. Therefore, business requirements must embrace eventual
     consistency between microservices.
 
--   In production, there is an operational complexity in deploying and
+- In production, there is an operational complexity in deploying and
     managing a system compromised of many independent services.
 
--   Direct client-to-microservice communication can make it difficult to
+- Direct client-to-microservice communication can make it difficult to
     refactor the contracts of microservices. For example, over time how
     the system is partitioned into services might need to change. A
     single service might split into two or more services, and two
@@ -141,8 +140,9 @@ like a newly installed physical computer or a virtual machine.
 There are many similarities between containers and virtual machines, as
 illustrated in Figure 8-3.
 
-![](./media/image15.png){width="6.259722222222222in"
-height="3.370138888888889in"}**Figure 8-3**: Comparison of virtual
+![](./media/image15.png)
+
+**Figure 8-3**: Comparison of virtual
 machines and containers
 
 A container runs an operating system, has a file system, and can be
@@ -165,22 +165,22 @@ instancing new containers as required.
 
 The key concepts when creating and working with containers are:
 
--   Container Host: The physical or virtual machine configured to host
+- Container Host: The physical or virtual machine configured to host
     containers. The container host will run one or more containers.
 
--   Container Image: An image consists of a union of layered filesystems
+- Container Image: An image consists of a union of layered filesystems
     stacked on top of each other, and is the basis of a container. An
-    image does not have state and it never changes as it\'s deployed to
+    image does not have state and it never changes as it's deployed to
     different environments.
 
--   Container: A container is a runtime instance of an image.
+- Container: A container is a runtime instance of an image.
 
--   Container OS Image: Containers are deployed from images. The
+- Container OS Image: Containers are deployed from images. The
     container operating system image is the first layer in potentially
     many image layers that make up a container. A container operating
-    system is immutable, and can\'t be modified.
+    system is immutable, and can't be modified.
 
--   Container Repository: Each time a container image is created, the
+- Container Repository: Each time a container image is created, the
     image and its dependencies are stored in a local repository. These
     images can be reused many times on the container host. The container
     images can also be stored in a public or private registry, such as
@@ -195,8 +195,7 @@ The key concepts when creating and working with containers are:
     The eShopOnContainers reference application uses Docker to host four
     containerized back-end microservices, as illustrated in Figure 8-4.
 
-![](./media/image16.png){width="3.9180555555555556in"
-height="3.948462379702537in"}
+![](./media/image16.png)
 
 **Figure 8-4**: eShopOnContainers reference application back-end
 microservices
@@ -223,21 +222,20 @@ The eShopOnContainers mobile app communicates with the containerized
 back-end microservices using *direct client-to-microservice*
 communication, which is shown in Figure 8-5.
 
-![](./media/image17.png){width="4.948842957130359in"
-height="2.9443799212598427in"}
+![](./media/image17.png)
 
 **Figure 8-5**: Direct client-to-microservice communication
 
 With direct client-to-microservice communication, the mobile app makes
 requests to each microservice directly through its public endpoint, with
 a different TCP port per microservice. In production, the endpoint would
-typically map to the microservice\'s load balancer, which distributes
+typically map to the microservice's load balancer, which distributes
 requests across the available instances.
 
 **Tip:** Consider using API gateway communication
 
 Direct client-to-microservice communication can have drawbacks when
-building a large and complex microservice based application, but it\'s
+building a large and complex microservice based application, but it's
 more than adequate for a small application. When designing a large
 microservice based application with tens of microservices, consider
 using API gateway communication. For more information, see [.NET
@@ -271,8 +269,7 @@ An event bus allows publish-subscribe communication between
 microservices, without requiring the components to be explicitly aware
 of each other, as shown in Figure 8-6.
 
-![](./media/image18.png){width="5.573842957130359in"
-height="2.247716535433071in"}
+![](./media/image18.png)
 
 **Figure 8-6:** Publish-subscribe with an event bus
 
@@ -283,8 +280,7 @@ implementation could use RabbitMQ, Azure Service Bus, or other service
 buses such as NServiceBus and MassTransit. Figure 8-7 shows how an event
 bus is used in the eShopOnContainers reference application.
 
-![](./media/image19.png){width="5.2444444444444445in"
-height="3.459722222222222in"}
+![](./media/image19.png)
 
 **Figure 8-7:** Asynchronous event-driven communication in the reference
 application
@@ -294,15 +290,15 @@ one-to-many asynchronous publish-subscribe functionality. This means
 that after publishing an event, there can be multiple subscribers
 listening for the same event. Figure 8-9 illustrates this relationship.
 
-![](./media/image20.png){width="6.259722222222222in"
-height="1.851388888888889in"}**Figure 8-9**: One-to-many communication
+![](./media/image20.png)
+**Figure 8-9**: One-to-many communication
 
 This one-to-many communication approach uses events to implement
 business transactions that span multiple services, ensuring eventual
 consistency between the services. An eventual-consistent transaction
 consists of a series of distributed steps. Therefore, when the
 user-profile microservice receives the UpdateUser command, it updates
-the user\'s details in its database and publishes the UserUpdated event
+the user's details in its database and publishes the UserUpdated event
 to the event bus. Both the basket microservice and the ordering
 microservice have subscribed to receive this event, and in response
 update their buyer information in their respective databases.
@@ -318,7 +314,7 @@ Applications](https://aka.ms/microservicesebook).
 # Summary
 
 Microservices offer an approach to application development and
-deployment that\'s suited to the agility, scale, and reliability
+deployment that's suited to the agility, scale, and reliability
 requirements of modern cloud applications. One of the main advantages of
 microservices is that they can be scaled-out independently, which means
 that a specific functional area can be scaled that requires more

@@ -15,7 +15,7 @@ The guide provides architectural guidance for developing adaptable,
 maintainable, and testable Xamarin.Forms enterprise apps. Guidance is
 provided on how to implement MVVM, dependency injection, navigation,
 validation, and configuration management, while maintaining loose
-coupling. In addition, there\'s also guidance on performing
+coupling. In addition, there's also guidance on performing
 authentication and authorization with IdentityServer, accessing data
 from containerized microservices, and unit testing.
 
@@ -68,7 +68,7 @@ foundation of understanding such apps and their technical
 considerations. The guide, along with its sample app, can also serve as
 a starting point or reference for creating a new enterprise app. Use the
 associated sample app as a template for the new app, or to see how to
-organize an app\'s component parts. Then, refer back to this guide for
+organize an app's component parts. Then, refer back to this guide for
 architectural guidance.
 
 Feel free to forward this guide to team members to help ensure a common

@@ -14,7 +14,7 @@ are coupled by object references to each other, and the subscriber type
 must have a reference to the publisher type. This can create memory
 management issues, especially when there are short lived objects that
 subscribe to an event of a static or long-lived object. If the event
-handler isn\'t removed, the subscriber will be kept alive by the
+handler isn't removed, the subscriber will be kept alive by the
 reference to it in the publisher, and this will prevent or delay the
 garbage collection of the subscriber.
 
@@ -34,8 +34,7 @@ publish a single message, and there can be multiple subscribers
 listening for the same message. Figure 4-1 illustrates this
 relationship:
 
-![](./media/image7.png){width="6.259722222222222in"
-height="1.863888888888889in"}
+![](./media/image7.png)
 
 **Figure 4-1:** Multicast publish-subscribe functionality
 
@@ -53,23 +52,23 @@ The eShopOnContainers mobile app uses the MessagingCenter class to
 communicate between loosely coupled components. The app defines three
 messages:
 
--   The AddProduct message is published by the CatalogViewModel class
+- The AddProduct message is published by the CatalogViewModel class
     when an item is added to the shopping basket. In return, the
     BasketViewModel class subscribes to the message and increments the
     number of items in the shopping basket in response. In addition, the
     BasketViewModel class also unsubscribes from this message.
 
--   The Filter message is published by the CatalogViewModel class when
+- The Filter message is published by the CatalogViewModel class when
     the user applies a brand or type filter to the items displayed from
     the catalogue. In return, the CatalogView class subscribes to the
     message and updates the UI so that only items that match the filter
     criteria are displayed.
 
--   The ChangeTab message is published by the MainViewModel class when
+- The ChangeTab message is published by the MainViewModel class when
     the CheckoutViewModel navigates to the MainViewModel following the
     successful creation and submission of a new order. In return, the
     MainView class subscribes to the message and updates the UI so that
-    the **My profile** tab is active, to show the user\'s orders.
+    the **My profile** tab is active, to show the user's orders.
 
 **Note:** While the MessagingCenter class permits communication between
 loosely-coupled classes, it does not offer the only architectural
@@ -85,7 +84,7 @@ receiving the message on the same thread.
 
 **Tip:** Marshal to the UI thread when performing UI updates
 
-If a message that\'s sent from a background thread is required to update
+If a message that's sent from a background thread is required to update
 the UI, process the message on the UI thread in the subscriber by
 invoking the Device.BeginInvokeOnMainThread method.
 
@@ -125,12 +124,12 @@ MessagingCenter.Send(this, MessengerKeys.AddProduct, catalogItem);
 
 In this example, the Send method specifies three arguments:
 
--   The first argument specifies the sender class. The sender class must
+- The first argument specifies the sender class. The sender class must
     be specified by any subscribers who wish to receive the message.
 
--   The second argument specifies the message.
+- The second argument specifies the message.
 
--   The third argument specifies the payload data to be sent to the
+- The third argument specifies the payload data to be sent to the
     subscriber. In this case the payload data is a CatalogItem instance.
 
 The Send method will publish the message, and its payload data, using a
@@ -165,7 +164,7 @@ executes code that updates the UI.
 
 **Tip:** Consider using immutable payload data
 
-Don\'t attempt to modify the payload data from within a callback
+Don't attempt to modify the payload data from within a callback
 delegate because several threads could be accessing the received data
 simultaneously. In this scenario, the payload data should be immutable
 to avoid concurrency errors.

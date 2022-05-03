@@ -17,14 +17,14 @@ microservice that uses IdentityServer 4. The mobile app requests
 security tokens from IdentityServer, either for authenticating a user or
 for accessing a resource. For IdentityServer to issue tokens on behalf
 of a user, the user must sign-in to IdentityServer. However,
-IdentityServer doesn\'t provide a user interface or database for
+IdentityServer doesn't provide a user interface or database for
 authentication. Therefore, in the eShopOnContainers reference
 application, ASP.NET Core Identity is used for this purpose.
 
 ## Authentication
 
 Authentication is required when an application needs to know the
-identity of the current user. ASP.NET Core\'s primary mechanism for
+identity of the current user. ASP.NET Core's primary mechanism for
 identifying users is the ASP.NET Core Identity membership system, which
 stores user information in a data store configured by the developer.
 Typically, this data store will be an EntityFramework store, though
@@ -38,7 +38,7 @@ suitable solution. However, cookies are not always a natural means of
 persisting and transmitting data. For example, an ASP.NET Core web
 application that exposes RESTful endpoints that are accessed from a
 mobile app will typically need to use bearer token authentication, since
-cookies can\'t be used in this scenario. However, bearer tokens can
+cookies can't be used in this scenario. However, bearer tokens can
 easily be retrieved and included in the authorization header of web
 requests made from the mobile app.
 
@@ -63,8 +63,9 @@ The combination of OpenID Connect and OAuth 2.0 combine the two
 fundamental security concerns of authentication and API access, and
 IdentityServer 4 is an implementation of these protocols.
 
-![](./media/image21.png){width="6.259722222222222in"
-height="1.288888888888889in"}In applications that use direct
+![](./media/image21.png)
+
+In applications that use direct
 client-to-microservice communication, such as the eShopOnContainers
 reference application, a dedicated authentication microservice acting as
 a Security Token Service (STS) can be used to authenticate users, as
@@ -81,13 +82,13 @@ access control for APIs. Therefore, the mobile app requests tokens from
 IdentityServer, either for authenticating a user or for accessing a
 resource:
 
--   Authenticating users with IdentityServer is achieved by the mobile
+- Authenticating users with IdentityServer is achieved by the mobile
     app requesting an *identity* token, which represents the outcome of
     an authentication process. At a bare minimum, it contains an
     identifier for the user, and information about how and when the user
     authenticated. It can also contain additional identity data.
 
--   Accessing a resource with IdentityServer is achieved by the mobile
+- Accessing a resource with IdentityServer is achieved by the mobile
     app requesting an *access* token, which allows access to an API
     resource. Clients request access tokens and forward them to the API.
     Access tokens contain information about the client, and the user (if
@@ -100,16 +101,16 @@ request tokens.
 ## Adding IdentityServer to a web application
 
 In order for an ASP.NET Core web application to use IdentityServer 4, it
-must be added to the web application\'s Visual Studio solution. For more
+must be added to the web application's Visual Studio solution. For more
 information, see [Setup and
 Overview](https://identityserver4.readthedocs.io/en/release/quickstarts/0_overview.html)
 in the IdentityServer documentation.
 
-Once IdentityServer is included in the web application\'s Visual Studio
-solution, it must be added to the web application\'s HTTP request
+Once IdentityServer is included in the web application's Visual Studio
+solution, it must be added to the web application's HTTP request
 processing pipeline, so that it can serve requests to OpenID Connect and
 OAuth 2.0 endpoints. This is achieved in the Configure method in the web
-application\'s Startup class, as demonstrated in the following code
+application's Startup class, as demonstrated in the following code
 example:
 
 public void Configure(\
@@ -120,14 +121,14 @@ public void Configure(\
     \...\
 }
 
-Order matters in the web application\'s HTTP request processing
+Order matters in the web application's HTTP request processing
 pipeline. Therefore, IdentityServer must be added to the pipeline before
 the UI framework that implements the login screen.
 
 ## Configuring IdentityServer
 
 IdentityServer should be configured in the ConfigureServices method in
-the web application\'s Startup class by calling the
+the web application's Startup class by calling the
 services.AddIdentityServer method, as demonstrated in the following code
 example from the eShopOnContainers reference application:
 
@@ -149,17 +150,17 @@ public void ConfigureServices(IServiceCollection services)\
 After calling the services.AddIdentityServer method, additional fluent
 APIs are called to configure the following:
 
--   Credentials used for signing.
+- Credentials used for signing.
 
--   API and identity resources that users might request access to.
+- API and identity resources that users might request access to.
 
--   Clients that will be connecting to request tokens.
+- Clients that will be connecting to request tokens.
 
--   ASP.NET Core Identity.
+- ASP.NET Core Identity.
 
 **Tip**: Dynamically load the IdentityServer 4 configuration
 
-IdentityServer 4\'s APIs allow for configuring IdentityServer from an
+IdentityServer 4's APIs allow for configuring IdentityServer from an
 in-memory list of configuration objects. In the eShopOnContainers
 reference application, these in-memory collections are hard-coded into
 the application. However, in production scenarios they can be loaded
@@ -236,15 +237,15 @@ Clients are applications that can request tokens from IdentityServer.
 Typically, the following settings must be defined for each client as a
 minimum:
 
--   A unique client ID.
+- A unique client ID.
 
--   The allowed interactions with the token service (known as the grant
+- The allowed interactions with the token service (known as the grant
     type).
 
--   The location where identity and access tokens are sent to (known as
+- The location where identity and access tokens are sent to (known as
     a redirect URI).
 
--   A list of resources that the client is allowed access to (known as
+- A list of resources that the client is allowed access to (known as
     scopes).
 
 When configuring clients, the AddInMemoryClients method expects an
@@ -289,36 +290,36 @@ public static IEnumerable\<Client\> GetClients(Dictionary\<string,string\> c
 
 This configuration specifies data for the following properties:
 
--   ClientId: A unique ID for the client.
+- ClientId: A unique ID for the client.
 
--   ClientName: The client display name, which is used for logging and
+- ClientName: The client display name, which is used for logging and
     the consent screen.
 
--   AllowedGrantTypes: Specifies how a client wants to interact with
+- AllowedGrantTypes: Specifies how a client wants to interact with
     IdentityServer. For more information see [Configuring the
     authentication flow](#configuring-the-authentication-flow).
 
--   ClientSecrets: Specifies the client secret credentials that are used
+- ClientSecrets: Specifies the client secret credentials that are used
     when requesting tokens from the token endpoint.
 
--   RedirectUris: Specifies the allowed URIs to which to return tokens
+- RedirectUris: Specifies the allowed URIs to which to return tokens
     or authorization codes.
 
--   RequireConsent: Specifies whether a consent screen is required.
+- RequireConsent: Specifies whether a consent screen is required.
 
--   RequirePkce: Specifies whether clients using an authorization code
+- RequirePkce: Specifies whether clients using an authorization code
     must send a proof key.
 
--   PostLogoutRedirectUris: Specifies the allowed URIs to redirect to
+- PostLogoutRedirectUris: Specifies the allowed URIs to redirect to
     after logout.
 
--   AllowedCorsOrigins: Specifies the origin of the client so that
+- AllowedCorsOrigins: Specifies the origin of the client so that
     IdentityServer can allow cross-origin calls from the origin.
 
--   AllowedScopes: Specifies the resources the client has access to. By
+- AllowedScopes: Specifies the resources the client has access to. By
     default, a client has no access to any resources.
 
--   AllowOfflineAccess: Specifies whether the client can request refresh
+- AllowOfflineAccess: Specifies whether the client can request refresh
     tokens.
 
 ### Configuring the authentication flow
@@ -328,17 +329,17 @@ configured by specifying the grant types in the Client.AllowedGrantTypes
 property. The OpenID Connect and OAuth 2.0 specifications define a
 number of authentication flows, including:
 
--   Implicit. This flow is optimized for browser-based applications and
+- Implicit. This flow is optimized for browser-based applications and
     should be used either for user authentication-only, or
     authentication and access token requests. All tokens are transmitted
     via the browser, and therefore advanced features like refresh tokens
     are not permitted.
 
--   Authorization code. This flow provides the ability to retrieve
+- Authorization code. This flow provides the ability to retrieve
     tokens on a back channel, as opposed to the browser front channel,
     while also supporting client authentication.
 
--   Hybrid. This flow is a combination of the implicit and authorization
+- Hybrid. This flow is a combination of the implicit and authorization
     code grant types. The identity token is transmitted via the browser
     channel and contains the signed protocol response along with other
     artifacts such as the authorization code. After successful
@@ -359,13 +360,14 @@ in the IdentityServer 4 documentation.
 ## Performing authentication
 
 For IdentityServer to issue tokens on behalf of a user, the user must
-sign-in to IdentityServer. However, IdentityServer doesn\'t provide a
+sign-in to IdentityServer. However, IdentityServer doesn't provide a
 user interface or database for authentication. Therefore, in the
 eShopOnContainers reference application, ASP.NET Core Identity is used
 for this purpose.
 
-![](./media/image22.png){width="6.259722222222222in"
-height="1.6513888888888888in"}The eShopOnContainers mobile app
+![](./media/image22.png)
+
+The eShopOnContainers mobile app
 authenticates with IdentityServer with the hybrid authentication flow,
 which is illustrated in Figure 9-2.
 
@@ -384,9 +386,9 @@ parameters. After sign-out occurs, IdentityServer responds by sending a
 post logout redirect URI back to the mobile app. Figure 9-3 illustrates
 this process.
 
-![](./media/image23.png){width="6.259722222222222in"
-height="1.1930555555555555in"}**Figure 9-3:** High-level overview of the
-sign-out process
+![](./media/image23.png)
+
+**Figure 9-3:** High-level overview of the sign-out process
 
 In the eShopOnContainers mobile app, communication with IdentityServer
 is performed by the IdentityService class, which implements the
@@ -436,7 +438,7 @@ public string CreateAuthorizationRequest()\
     return authorizeUri;\
 }
 
-This method creates the URI for IdentityServer\'s [authorization
+This method creates the URI for IdentityServer's [authorization
 endpoint](https://identityserver4.readthedocs.io/en/release/endpoints/authorize.html),
 with the required parameters. The authorization endpoint is at
 /connect/authorize on port 5105 of the base endpoint exposed as a user
@@ -458,13 +460,12 @@ LoginViewModel class. When the IsLogin property becomes true, the
 WebView in the LoginView becomes visible. The WebView data binds its
 Source property to the LoginUrl property of the LoginViewModel class,
 and so makes a sign-in request to IdentityServer when the LoginUrl
-property is set to IdentityServer\'s authorization endpoint. When
-IdentityServer receives this request and the user isn\'t authenticated,
+property is set to IdentityServer's authorization endpoint. When
+IdentityServer receives this request and the user isn't authenticated,
 the WebView will be redirected to the configured login page, which is
 shown in Figure 9-4.
 
-![](./media/image24.png){width="4.7637795275590555in"
-height="3.377952755905512in"}
+![](./media/image24.png)
 
 **Figure 9-4:** Login page displayed by the WebView
 
@@ -494,9 +495,9 @@ private async Task NavigateAsync(string url)\
     \...\
 }
 
-This method parses the authentication response that\'s contained in the
+This method parses the authentication response that's contained in the
 return URI, and provided that a valid authorization code is present, it
-makes a request to IdentityServer\'s [token
+makes a request to IdentityServer's [token
 endpoint](https://identityserver4.readthedocs.io/en/release/endpoints/token.html),
 passing the authorization code, the PKCE secret verifier, and other
 required parameters. The token endpoint is at /connect/token on port
@@ -506,7 +507,7 @@ management](#_Toc484430918).
 
 **Tip**: Validate return URIs
 
-Although the eShopOnContainers mobile app doesn\'t validate the return
+Although the eShopOnContainers mobile app doesn't validate the return
 URI, the best practice is to validate that the return URI refers to a
 known location in order to prevent open-redirect attacks.
 
@@ -528,7 +529,7 @@ application settings, see [Configuration management](#_Toc484430918).
 
 **Note:** The eShopOnContainers also allows a mock sign-in when the app
 is configured to use mock services in the SettingsView. In this mode,
-the app doesn\'t communicate with IdentityServer, instead allowing the
+the app doesn't communicate with IdentityServer, instead allowing the
 user to sign-in using any credentials.
 
 ### Signing-out
@@ -542,7 +543,7 @@ navigation, see [Passing parameters during
 navigation](#passing-parameters-during-navigation).
 
 When a view is created and navigated to, the InitializeAsync method of
-the view\'s associated view model is executed, which then executes the
+the view's associated view model is executed, which then executes the
 Logout method of the LoginViewModel class, which is shown in the
 following code example:
 
@@ -574,7 +575,7 @@ public string CreateLogoutRequest(string token)\
         GlobalSetting.Instance.LogoutCallback);\
 }
 
-This method creates the URI to IdentityServer\'s [end session
+This method creates the URI to IdentityServer's [end session
 endpoint](https://identityserver4.readthedocs.io/en/release/endpoints/endsession.html#refendsession),
 with the required parameters. The end session endpoint is at
 /connect/endsession on port 5105 of the base endpoint exposed as a user
@@ -586,7 +587,7 @@ LoginViewModel class. While the IsLogin property is true, the WebView in
 the LoginView is visible. The WebView data binds its Source property to
 the LoginUrl property of the LoginViewModel class, and so makes a
 sign-out request to IdentityServer when the LoginUrl property is set to
-IdentityServer\'s end session endpoint. When IdentityServer receives
+IdentityServer's end session endpoint. When IdentityServer receives
 this request, provided that the user is signed-in, sign-out occurs.
 Authentication is tracked with a cookie managed by the cookie
 authentication middleware from ASP.NET Core. Therefore, signing out of
@@ -611,7 +612,7 @@ private async Task NavigateAsync(string url)\
 This method clears both the identity token and the access token from
 application settings, and sets the IsLogin property to false, which
 causes the WebView on the LoginView page to become invisible. Finally,
-the LoginUrl property is set to the URI of IdentityServer\'s
+the LoginUrl property is set to the URI of IdentityServer's
 [authorization
 endpoint](https://identityserver4.readthedocs.io/en/release/endpoints/authorize.html),
 with the required parameters, in preparation for the next time the user
@@ -625,7 +626,7 @@ application settings, see [Configuration management](#_Toc484430918).
 
 **Note:** The eShopOnContainers also allows a mock sign-out when the app
 is configured to use mock services in the SettingsView. In this mode,
-the app doesn\'t communicate with IdentityServer, and instead clears any
+the app doesn't communicate with IdentityServer, and instead clears any
 stored tokens from application settings.
 
 # Authorization
@@ -646,7 +647,7 @@ public class BasketController : Controller\
 }
 
 If an unauthorized user attempts to access a controller or action
-that\'s marked with the Authorize attribute, the MVC framework returns a
+that's marked with the Authorize attribute, the MVC framework returns a
 401 (unauthorized) HTTP status code.
 
 **Note:** Parameters can be specified on the Authorize attribute to
@@ -654,8 +655,9 @@ restrict an API to specific users. For more information, see
 [Authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction)
 on the Microsoft Documentation Center.
 
-![](./media/image25.png){width="6.259722222222222in"
-height="3.138888888888889in"}IdentityServer can be integrated into the
+![](./media/image25.png)
+
+IdentityServer can be integrated into the
 authorization workflow so that the access tokens it provides control
 authorization. This approach is shown in Figure 9-5.
 
@@ -673,9 +675,9 @@ API resources](#configuring-api-resources).
 ## Configuring IdentityServer to perform authorization
 
 To perform authorization with IdentityServer, its authorization
-middleware must be added to the web application\'s HTTP request
+middleware must be added to the web application's HTTP request
 pipeline. The middleware is added in the ConfigureAuth method in the web
-application\'s Startup class, which is invoked from the Configure
+application's Startup class, which is invoked from the Configure
 method, and is demonstrated in the following code example from the
 eShopOnContainers reference application:
 
@@ -692,13 +694,13 @@ protected virtual void ConfigureAuth(IApplicationBuilder app)\
 
 This method ensures that the API can only be accessed with a valid
 access token. The middleware validates the incoming token to ensure that
-it\'s sent from a trusted issuer, and validates that the token is valid
+it's sent from a trusted issuer, and validates that the token is valid
 to be used with the API that receives it. Therefore, browsing to the
 ordering or basket controller will return a 401 (unauthorized) HTTP
 status code, indicating that an access token is required.
 
-**Note:** IdentityServer\'s authorization middleware must be added to
-the web application\'s HTTP request pipeline before adding MVC with
+**Note:** IdentityServer's authorization middleware must be added to
+the web application's HTTP request pipeline before adding MVC with
 app.UseMvc() or app.UseMvcWithDefaultRoute().
 
 ## Making access requests to APIs
@@ -743,7 +745,7 @@ The DefaultRequestHeaders property of the HttpClient class exposes the
 headers that are sent with each request, and the access token is added
 to the Authorization header prefixed with the string Bearer. When the
 request is sent to a RESTful API, the value of the Authorization header
-is extracted and validated to ensure that it\'s sent from a trusted
+is extracted and validated to ensure that it's sent from a trusted
 issuer, and used to determine whether the user has permission to invoke
 the API that receives it.
 
@@ -764,6 +766,6 @@ authentication.
 The mobile app requests security tokens from IdentityServer, either for
 authenticating a user or for accessing a resource. When accessing a
 resource, an access token must be included in the request to APIs that
-require authorization. IdentityServer\'s middleware validates incoming
+require authorization. IdentityServer's middleware validates incoming
 access tokens to ensure that they are sent from a trusted issuer, and
 that they are valid to be used with the API that receives them.

@@ -19,8 +19,9 @@ app.
 
 ## The MVVM pattern
 
-![](./media/image5.png){width="6.259722222222222in"
-height="1.4368055555555554in"}There are three core components in the
+![](./media/image5.png)
+
+There are three core components in the
 MVVM pattern: the model, the view, and the view model. Each serves a
 distinct purpose. Figure 2-1 shows the relationships between the three
 components.
@@ -28,7 +29,7 @@ components.
 **Figure 2-1**: The MVVM pattern
 
 In addition to understanding the responsibilities of each components,
-it\'s also important to understand how they interact with each other. At
+it's also important to understand how they interact with each other. At
 a high level, the view \"knows about\" the view model, and the view
 model \"knows about\" the model, but the model is unaware of the view
 model, and the view model is unaware of the view. Therefore, the view
@@ -37,21 +38,21 @@ independently of the view.
 
 The benefits of using the MVVM pattern are as follows:
 
--   If there\'s an existing model implementation that encapsulates
+- If there's an existing model implementation that encapsulates
     existing business logic, it can be difficult or risky to change it.
     In this scenario, the view model acts as an adapter for the model
     classes and enables you to avoid making any major changes to the
     model code.
 
--   Developers can create unit tests for the view model and the model,
+- Developers can create unit tests for the view model and the model,
     without using the view. The unit tests for the view model can
     exercise exactly the same functionality as used by the view.
 
--   The app UI can be redesigned without touching the code, provided
+- The app UI can be redesigned without touching the code, provided
     that the view is implemented entirely in XAML. Therefore, a new
     version of the view should work with the existing view model.
 
--   Designers and developers can work independently and concurrently on
+- Designers and developers can work independently and concurrently on
     their components during the development process. Designers can focus
     on the view, while developers can work on the view model and model
     components.
@@ -73,23 +74,23 @@ XAML, such as animations.
 In a Xamarin.Forms application, a view is typically a Page-derived or
 ContentView-derived class. However, views can also be represented by a
 data template, which specifies the UI elements to be used to visually
-represent an object when it\'s displayed. A data template as a view does
+represent an object when it's displayed. A data template as a view does
 not have any code-behind, and is designed to bind to a specific view
 model type.
 
 **Tip:** Avoid enabling and disabling UI elements in the code-behind
 
 Ensure that view models are responsible for defining logical state
-changes that affect some aspects of the view\'s display, such as whether
+changes that affect some aspects of the view's display, such as whether
 a command is available, or an indication that an operation is pending.
 Therefore, enable and disable UI elements by binding to view model
 properties, rather than enabling and disabling them in code-behind.
 
 There are several options for executing code on the view model in
 response to interactions on the view, such as a button click or item
-selection. If a control supports commands, the control\'s Command
+selection. If a control supports commands, the control's Command
 property can be data-bound to an ICommand property on the view model.
-When the control\'s command is invoked, the code in the view model will
+When the control's command is invoked, the code in the view model will
 be executed. In addition to commands, behaviors can be attached to an
 object in the view and can listen for either a command to be invoked or
 event to be raised. In response, the behavior can then invoke an
@@ -105,13 +106,13 @@ determines how that functionality is to be displayed.
 
 **Tip:** Keep the UI responsive with asynchronous operations
 
-Mobile apps should keep the UI thread unblocked to improve the user\'s
+Mobile apps should keep the UI thread unblocked to improve the user's
 perception of performance. Therefore, in the view model, use
 asynchronous methods for I/O operations and raise events to
 asynchronously notify views of property changes.
 
-The view model is also responsible for coordinating the view\'s
-interactions with any model classes that are required. There\'s
+The view model is also responsible for coordinating the view's
+interactions with any model classes that are required. There's
 typically a one-to-many relationship between the view model and the
 model classes. The view model might choose to expose model classes
 directly to the view so that controls in the view can data bind directly
@@ -127,10 +128,10 @@ make it easier for display by the view.
 
 **Tip:** Centralize data conversions in a conversion layer
 
-It\'s also possible to use converters as a separate data conversion
+It's also possible to use converters as a separate data conversion
 layer that sits between the view model and the view. This can be
 necessary, for example, when data requires special formatting that the
-view model doesn\'t provide.
+view model doesn't provide.
 
 In order for the view model to participate in two-way data binding with
 the view, its properties must raise the PropertyChanged event. View
@@ -145,8 +146,8 @@ INotifyCollectionChanged interface on collections.
 
 ## Model
 
-Model classes are non-visual classes that encapsulate the app\'s data.
-Therefore, the model can be thought of as representing the app\'s domain
+Model classes are non-visual classes that encapsulate the app's data.
+Therefore, the model can be thought of as representing the app's domain
 model, which usually includes a data model along with business and
 validation logic. Examples of model objects include data transfer
 objects (DTOs), Plain Old CLR Objects (POCOs), and generated entity and
@@ -171,11 +172,11 @@ With view first composition the app is conceptually composed of views
 that connect to the view models they depend on. The primary benefit of
 this approach is that it makes it easy to construct loosely coupled,
 unit testable apps because the view models have no dependence on the
-views themselves. It\'s also easy to understand the structure of the app
+views themselves. It's also easy to understand the structure of the app
 by following its visual structure, rather than having to track code
 execution to understand how classes are created and associated. In
 addition, view first construction aligns with the Xamarin.Forms
-navigation system that\'s responsible for constructing pages when
+navigation system that's responsible for constructing pages when
 navigation occurs, which makes a view model first composition complex
 and misaligned with the platform.
 
@@ -191,8 +192,8 @@ the various parts of the app are created and associated.
 **Tip:** Keep view models and views independent
 
 The binding of views to a property in a data source should be the
-view\'s principal dependency on its corresponding view model.
-Specifically, don\'t reference view types, such as Button and ListView,
+view's principal dependency on its corresponding view model.
+Specifically, don't reference view types, such as Button and ListView,
 from view models. By following the principles outlined here, view models
 can be tested in isolation, therefore reducing the likelihood of
 software defects by limiting scope.
@@ -215,17 +216,17 @@ is demonstrated in the following code example:
 \</ContentPage\>
 
 When the ContentPage is created, an instance of the LoginViewModel is
-automatically constructed and set as the view\'s BindingContext.
+automatically constructed and set as the view's BindingContext.
 
 This declarative construction and assignment of the view model by the
-view has the advantage that it\'s simple, but has the disadvantage that
+view has the advantage that it's simple, but has the disadvantage that
 it requires a default (parameter-less) constructor in the view model.
 
 ## Creating a view model programmatically
 
 A view can have code in the code-behind file that results in the view
 model being assigned to its BindingContext property. This is often
-accomplished in the view\'s constructor, as shown in the following code
+accomplished in the view's constructor, as shown in the following code
 example:
 
 public LoginView()\
@@ -235,7 +236,7 @@ public LoginView()\
 }
 
 The programmatic construction and assignment of the view model within
-the view\'s code-behind has the advantage that it\'s simple. However,
+the view's code-behind has the advantage that it's simple. However,
 the main disadvantage of this approach is that the view needs to provide
 the view model with any required dependencies. Using a dependency
 injection container can help to maintain loose coupling between the view
@@ -257,14 +258,14 @@ creation of the view.
 A view model locator is a custom class that manages the instantiation of
 view models and their association to views. In the eShopOnContainers
 mobile app, the ViewModelLocator class has an attached property,
-AutoWireViewModel, that\'s used to associate view models with views. In
-the view\'s XAML, this attached property is set to true to indicate that
+AutoWireViewModel, that's used to associate view models with views. In
+the view's XAML, this attached property is set to true to indicate that
 the view model should be automatically connected to the view, as shown
 in the following code example:
 
 viewModelBase:ViewModelLocator.AutoWireViewModel=\"true\"
 
-The AutoWireViewModel property is a bindable property that\'s
+The AutoWireViewModel property is a bindable property that's
 initialized to false, and when its value changes the
 OnAutoWireViewModelChanged event handler is called. This method resolves
 the view model for the view. The following code example shows how this
@@ -296,13 +297,13 @@ private static void OnAutoWireViewModelChanged(BindableObject bindable, obj
 The OnAutoWireViewModelChanged method attempts to resolve the view model
 using a convention-based approach. This convention assumes that:
 
--   View models are in the same assembly as view types.
+- View models are in the same assembly as view types.
 
--   Views are in a .Views child namespace.
+- Views are in a .Views child namespace.
 
--   View models are in a .ViewModels child namespace.
+- View models are in a .ViewModels child namespace.
 
--   View model names correspond with view names and end with
+- View model names correspond with view names and end with
     \"ViewModel\".
 
 Finally, the OnAutoWireViewModelChanged method sets the BindingContext
@@ -327,37 +328,37 @@ interface in a view model or model class allows the class to provide
 change notifications to any data-bound controls in the view when the
 underlying property value changes.
 
-App\'s should be architected for the correct use of property change
+App's should be architected for the correct use of property change
 notification, by meeting the following requirements:
 
--   Always raising a PropertyChanged event if a public property\'s value
+- Always raising a PropertyChanged event if a public property's value
     changes. Do not assume that raising the PropertyChanged event can be
     ignored because of knowledge of how XAML binding occurs.
 
--   Always raising a PropertyChanged event for any calculated properties
+- Always raising a PropertyChanged event for any calculated properties
     whose values are used by other properties in the view model or
     model.
 
--   Always raising the PropertyChanged event at the end of the method
+- Always raising the PropertyChanged event at the end of the method
     that makes a property change, or when the object is known to be in a
     safe state. Raising the event interrupts the operation by invoking
-    the event\'s handlers synchronously. If this happens in the middle
+    the event's handlers synchronously. If this happens in the middle
     of an operation, it might expose the object to callback functions
-    when it is in an unsafe, partially updated state. In addition, it\'s
+    when it is in an unsafe, partially updated state. In addition, it's
     possible for cascading changes to be triggered by PropertyChanged
     events. Cascading changes generally require updates to be complete
     before the cascading change is safe to execute.
 
--   Never raising a PropertyChanged event if the property does not
+- Never raising a PropertyChanged event if the property does not
     change. This means that you must compare the old and new values
     before raising the PropertyChanged event.
 
--   Never raising the PropertyChanged event during a view model\'s
+- Never raising the PropertyChanged event during a view model's
     constructor if you are initializing a property. Data-bound controls
     in the view will not have subscribed to receive change notifications
     at this point.
 
--   Never raising more than one PropertyChanged event with the same
+- Never raising more than one PropertyChanged event with the same
     property name argument within a single synchronous invocation of a
     public method of a class. For example, given a NumberOfItems
     property whose backing store is the \_numberOfItems field, if a
@@ -386,7 +387,7 @@ public abstract class ExtendedBindableObject : BindableObject\
     }\
 }
 
-Xamarin.Form\'s BindableObject class implements the
+Xamarin.Form's BindableObject class implements the
 INotifyPropertyChanged interface, and provides an OnPropertyChanged
 method. The ExtendedBindableObject class provides the
 RaisePropertyChanged method to invoke property change notification, and
@@ -437,7 +438,7 @@ connected to a command, and these controls will invoke the command when
 the user interacts with the control.
 
 Behaviors also allow controls to be declaratively connected to a
-command. However, behaviors can be used to invoke an action that\'s
+command. However, behaviors can be used to invoke an action that's
 associated with a range of events raised by a control. Therefore,
 behaviors address many of the same scenarios as command-enabled
 controls, while providing a greater degree of flexibility and control.
@@ -462,7 +463,7 @@ and CanExecute.
 Within a view model, there should be an object of type Command or
 Command\<T\> for each public property in the view model of type
 ICommand. The Command or Command\<T\> constructor requires an Action
-callback object that\'s called when the ICommand.Execute method is
+callback object that's called when the ICommand.Execute method is
 invoked. The CanExecute method is an optional constructor parameter, and
 is a Func that returns a bool.
 
@@ -478,7 +479,7 @@ Command object, it simply forwards the call to the method in the view
 model via the delegate that was specified in the Command constructor.
 
 An asynchronous method can be invoked by a command by using the async
-and await keywords when specifying the command\'s Execute delegate. This
+and await keywords when specifying the command's Execute delegate. This
 indicates that the callback is a Task and should be awaited. For
 example, the following code shows how a Command instance, which
 represents a sign-in command, is constructed by specifying a delegate to
@@ -494,9 +495,9 @@ that the NavigateAsync method will require an argument of type string:
 public ICommand NavigateCommand =\> new Command\<string\>(NavigateAsync);
 
 In both the Command and Command\<T\> classes, the delegate to the
-CanExecute method in each constructor is optional. If a delegate isn\'t
+CanExecute method in each constructor is optional. If a delegate isn't
 specified, the Command will return true for CanExecute. However, the
-view model can indicate a change in the command\'s CanExecute status by
+view model can indicate a change in the command's CanExecute status by
 calling the ChangeCanExecute method on the Command object. This causes
 the CanExecuteChanged event to be raised. Any controls in the UI that
 are bound to the command will then update their enabled status to
@@ -520,7 +521,7 @@ CommandParameter property. The type of the expected argument is
 specified in the Execute and CanExecute target methods. The
 TapGestureRecognizer will automatically invoke the target command when
 the user interacts with the attached control. The command parameter, if
-provided, will be passed as the argument to the command\'s Execute
+provided, will be passed as the argument to the command's Execute
 delegate.
 
 ## Implementing behaviors
@@ -535,7 +536,7 @@ attached to the control, and packaged for reuse across more than one
 view or app. In the context of MVVM, behaviors are a useful approach for
 connecting controls to commands.
 
-A behavior that\'s attached to a control through attached properties is
+A behavior that's attached to a control through attached properties is
 known as an *attached behavior*. The behavior can then use the exposed
 API of the element to which it is attached to add functionality to that
 control, or other controls, in the visual tree of the view. The
@@ -582,7 +583,7 @@ public class EventToCommandBehavior : BindableBehavior\<View\>\
             \_eventInfo = events.FirstOrDefault(e =\> e.Name == EventName);\
             if (\_eventInfo == null)\
                 throw new ArgumentException(string.Format(\
-                        \"EventToCommand: Can\'t find any event named \'{0}\' on attached type\", \
+                        \"EventToCommand: Can't find any event named '{0}' on attached type\", \
                         EventName));\
 \
             AddEventHandler(\_eventInfo, AssociatedObject, OnFired);\
@@ -616,16 +617,16 @@ which executes the command.
 
 The advantage of using the EventToCommandBehavior to execute a command
 when an event fires, is that commands can be associated with controls
-that weren\'t designed to interact with commands. In addition, this
+that weren't designed to interact with commands. In addition, this
 moves event-handling code to view models, where it can be unit tested.
 
 ### Invoking behaviors from a view
 
 The EventToCommandBehavior is particularly useful for attaching a
-command to a control that doesn\'t support commands. For example, the
+command to a control that doesn't support commands. For example, the
 ProfileView uses the EventToCommandBehavior to execute the
 OrderDetailCommand when the ItemTapped event fires on the ListView that
-lists the user\'s orders, as shown in the following code:
+lists the user's orders, as shown in the following code:
 
 \<ListView\>\
     \<ListView.Behaviors\>\
@@ -641,7 +642,7 @@ At runtime, the EventToCommandBehavior will respond to interaction with
 the ListView. When an item is selected in the ListView, the ItemTapped
 event will fire, which will execute the OrderDetailCommand in the
 ProfileViewModel. By default, the event arguments for the event are
-passed to the command. This data is converted as it\'s passed between
+passed to the command. This data is converted as it's passed between
 source and target by the converter specified in the EventArgsConverter
 property, which returns the Item of the ListView from the
 ItemTappedEventArgs. Therefore, when the OrderDetailCommand is executed,
@@ -666,4 +667,4 @@ Using the MVVM pattern, the UI of the app and the underlying
 presentation and business logic is separated into three separate
 classes: the view, which encapsulates the UI and UI logic; the view
 model, which encapsulates presentation logic and state; and the model,
-which encapsulates the app\'s business logic and data.
+which encapsulates the app's business logic and data.

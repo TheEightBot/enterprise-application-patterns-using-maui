@@ -1,7 +1,7 @@
 # Unit testing
 
 Mobile apps have unique problems that desktop and web-based applications
-don\'t have to worry about. Mobile users will differ by the devices that
+don't have to worry about. Mobile users will differ by the devices that
 they use, by network connectivity, by the availability of services, and
 a range of other factors. Therefore, mobile apps should be tested as
 they will be used in the real world in order to improve their quality,
@@ -13,11 +13,11 @@ common form of testing.
 A unit test takes a small unit of the app, typically a method, isolates
 it from the remainder of the code, and verifies that it behaves as
 expected. Its goal is to check that each unit of functionality performs
-as expected, so that errors don\'t propagate throughout the app.
+as expected, so that errors don't propagate throughout the app.
 Detecting a bug where it occurs is more efficient that observing the
 effect of a bug indirectly at a secondary point of failure.
 
-Unit testing has the greatest effect on code quality when it\'s an
+Unit testing has the greatest effect on code quality when it's an
 integral part of the software development workflow. As soon as a method
 has been written, unit tests should be written that verify the behavior
 of the method in response to standard, boundary, and incorrect cases of
@@ -32,14 +32,14 @@ update.
 
 Unit tests typically use the arrange-act-assert pattern:
 
--   The *arrange* section of the unit test method initializes objects
+- The *arrange* section of the unit test method initializes objects
     and sets the value of the data that is passed to the method under
     test.
 
--   The *act* section invokes the method under test with the required
+- The *act* section invokes the method under test with the required
     arguments.
 
--   The *assert* section verifies that the action of the method under
+- The *assert* section verifies that the action of the method under
     test behaves as expected.
 
 Following this pattern ensures that unit tests are readable and
@@ -70,8 +70,7 @@ object to unit test the OrderDetailViewModel class, instead, replace the
 OrderService object with a mock for the purpose of the tests. Figure
 10-1 illustrates this relationship.
 
-![](./media/image29.png){width="4.1299212598425195in"
-height="2.795275590551181in"}
+![](./media/image29.png)
 
 **Figure 10-1:** Classes that implement the IOrderService interface
 
@@ -92,18 +91,18 @@ specific unit testing techniques.
 
 **Tip:** Test one thing with each unit test
 
-Don\'t be tempted to make a unit test exercise more than one aspect of
-the unit\'s behavior. Doing so leads to tests that are difficult to read
+Don't be tempted to make a unit test exercise more than one aspect of
+the unit's behavior. Doing so leads to tests that are difficult to read
 and update. It can also lead to confusion when interpreting a failure.
 
 The eShopOnContainers mobile app uses [xUnit](https://xunit.github.io/)
 to perform unit testing, which supports two different types of unit
 tests:
 
--   Facts are tests that are always true, which test invariant
+- Facts are tests that are always true, which test invariant
     conditions.
 
--   Theories are tests that are only true for a particular set of data.
+- Theories are tests that are only true for a particular set of data.
 
 The unit tests included with the eShopOnContainers mobile app are fact
 tests, and so each unit test method is decorated with the \[Fact\]
@@ -136,7 +135,7 @@ public async Task OrderPropertyIsNotNullAfterViewModelInitializationTest()\
 This unit test checks that the Order property of the
 OrderDetailViewModel instance will have a value after the
 InitializeAsync method has been invoked. The InitializeAsync method is
-invoked when the view model\'s corresponding view is navigated to. For
+invoked when the view model's corresponding view is navigated to. For
 more information about navigation, see [Navigation](#_Toc484430899).
 
 When the OrderDetailViewModel instance is created, it expects an
@@ -144,7 +143,7 @@ OrderService instance to be specified as an argument. However, the
 OrderService retrieves data from a web service. Therefore, an
 OrderMockService instance, which is a mock version of the OrderService
 class, is specified as the argument to the OrderDetailViewModel
-constructor. Then, when the view model\'s InitializeAsync method is
+constructor. Then, when the view model's InitializeAsync method is
 invoked, which invokes IOrderService operations, mock data is retrieved
 rather than communicating with a web service.
 
@@ -213,7 +212,7 @@ message in response to its AddCatalogItemCommand being executed. Because
 the MessagingCenter class supports multicast message subscriptions, the
 unit test can subscribe to the AddProduct message and execute a callback
 delegate in response to receiving it. This callback delegate, specified
-as a lambda expression, sets a boolean field that\'s used by the Assert
+as a lambda expression, sets a boolean field that's used by the Assert
 statement to verify the behavior of the test.
 
 ## Testing exception handling
@@ -298,7 +297,7 @@ public void CheckValidationFailsWhenOnlyForenameHasDataTest()\
 }
 
 This unit test checks that validation fails when the Surname property of
-the MockViewModel doesn\'t have any data, and the Value, IsValid, and
+the MockViewModel doesn't have any data, and the Value, IsValid, and
 Errors property of each ValidatableObject\<T\> instance are correctly
 set.
 
@@ -307,7 +306,7 @@ set.
 A unit test takes a small unit of the app, typically a method, isolates
 it from the remainder of the code, and verifies that it behaves as
 expected. Its goal is to check that each unit of functionality performs
-as expected, so that errors don\'t propagate throughout the app.
+as expected, so that errors don't propagate throughout the app.
 
 The behavior of an object under test can be isolated by replacing
 dependent objects with mock objects that simulate the behavior of the

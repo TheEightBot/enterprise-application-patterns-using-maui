@@ -40,9 +40,9 @@ public class ProfileViewModel : ViewModelBase\
 The ProfileViewModel constructor receives an IOrderService instance as
 an argument, injected by another class. The only dependency in the
 ProfileViewModel class is on the interface type. Therefore, the
-ProfileViewModel class doesn\'t have any knowledge of the class that\'s
+ProfileViewModel class doesn't have any knowledge of the class that's
 responsible for instantiating the IOrderService object. The class
-that\'s responsible for instantiating the IOrderService object, and
+that's responsible for instantiating the IOrderService object, and
 inserting it into the ProfileViewModel class, is known as the
 *dependency injection container*.
 
@@ -59,16 +59,16 @@ such as lifetime management, and registration through assembly scanning.
 
 There are several advantages to using a dependency injection container:
 
--   A container removes the need for a class to locate its dependencies
+- A container removes the need for a class to locate its dependencies
     and manage their lifetimes.
 
--   A container allows mapping of implemented dependencies without
+- A container allows mapping of implemented dependencies without
     affecting the class.
 
--   A container facilitates testability by allowing dependencies to be
+- A container facilitates testability by allowing dependencies to be
     mocked.
 
--   A container increases maintainability by allowing new classes to be
+- A container increases maintainability by allowing new classes to be
     easily added to the app.
 
 In the context of a Xamarin.Forms app that uses MVVM, a dependency
@@ -92,18 +92,19 @@ container. Figure 3-1 shows the dependencies when using this container,
 which instantiates an IOrderService object and injects it into the
 ProfileViewModel class.
 
-![](./media/image6.png){width="5.948818897637795in"
-height="2.748031496062992in"}**Figure 3-1:** Dependencies when using
+![](./media/image6.png)
+
+**Figure 3-1:** Dependencies when using
 dependency injection
 
 At runtime, the container must know which implementation of the
 IOrderService interface it should instantiate, before it can instantiate
 a ProfileViewModel object. This involves:
 
--   The container deciding how to instantiate an object that implements
+- The container deciding how to instantiate an object that implements
     the IOrderService interface. This is known as *registration*.
 
--   The container instantiating the object that implements the
+- The container instantiating the object that implements the
     IOrderService interface, and the ProfileViewModel object. This is
     known as *resolution*.
 
@@ -127,10 +128,10 @@ concrete type that implements the interface.
 There are two ways of registering types and objects in the container
 through code:
 
--   Register a type or mapping with the container. When required, the
+- Register a type or mapping with the container. When required, the
     container will build an instance of the specified type.
 
--   Register an existing object in the container as a singleton. When
+- Register an existing object in the container as a singleton. When
     required, the container will return a reference to the existing
     object.
 
@@ -145,7 +146,7 @@ never change, it might not make sense to put it in the container.
 
 The registration of types that require dependency injection should be
 performed in a single method in an app, and this method should be
-invoked early in the app\'s lifecycle to ensure that the app is aware of
+invoked early in the app's lifecycle to ensure that the app is aware of
 the dependencies between its classes. In the eShopOnContainers mobile
 app this is performed by the ViewModelLocator class, which builds the
 IContainer object and is the only class in the app that holds a
@@ -220,7 +221,7 @@ been made.
 
 While Autofac provides an Update method to update registrations in an
 existing container, calling this method should be avoided where
-possible. There are risks to modifying a container after it\'s been
+possible. There are risks to modifying a container after it's been
 built, particularly if the container has been used. For more
 information, see [Consider a Container as
 Immutable](http://docs.autofac.org/en/latest/best-practices/#consider-a-container-as-immutable)
@@ -234,7 +235,7 @@ create a new instance, it injects any dependencies into the instance.
 
 Generally, when a type is resolved, one of three things happens:
 
-1.  If the type hasn\'t been registered, the container throws an
+1.  If the type hasn't been registered, the container throws an
     > exception.
 
 2.  If the type has been registered as a singleton, the container
@@ -242,8 +243,8 @@ Generally, when a type is resolved, one of three things happens:
     > is called for, the container creates it if required, and maintains
     > a reference to it.
 
-3.  If the type hasn\'t been registered as a singleton, the container
-    > returns a new instance, and doesn\'t maintain a reference to it.
+3.  If the type hasn't been registered as a singleton, the container
+    > returns a new instance, and doesn't maintain a reference to it.
 
 The following code example shows how the RequestProvider type that was
 previously registered with Autofac can be resolved:
@@ -273,7 +274,7 @@ to views, see [Automatically creating a view model with a view model
 locator](#automatically-creating-a-view-model-with-a-view-model-locator).
 
 **Note:** Registering and resolving types with a container has a
-performance cost because of the container\'s use of reflection for
+performance cost because of the container's use of reflection for
 creating each type, especially if dependencies are being reconstructed
 for each page navigation in the app. If there are many or deep
 dependencies, the cost of creation can increase significantly.
@@ -283,7 +284,7 @@ dependencies, the cost of creation can increase significantly.
 After registering a type, the default behavior for Autofac is to create
 a new instance of the registered type each time the type is resolved, or
 when the dependency mechanism injects instances into other classes. In
-this scenario, the container doesn\'t hold a reference to the resolved
+this scenario, the container doesn't hold a reference to the resolved
 object. However, when registering an instance, the default behavior for
 Autofac is to manage the lifetime of the object as a singleton.
 Therefore, the instance remains in scope while the container is in
