@@ -1,4 +1,4 @@
-# ontainerized Microservices
+# Containerized Microservices
 
 Developing client-server applications has resulted in a focus on building tiered applications that use specific technologies in each tier. Such applications are often referred to as *monolithic* applications, and are packaged onto hardware pre-scaled for peak loads. The main drawbacks of this development approach are the tight coupling between components within each tier, that individual components can't be easily scaled, and the cost of testing. A simple update can have unforeseen effects on the rest of the tier, and so a change to an application component requires its entire tier to be retested and redeployed.
 
@@ -26,29 +26,21 @@ Microservices also support independent updates. This loose coupling between micr
 
 Therefore, microservice applications have many benefits over monolithic applications:
 
-    - Each microservice is relatively small, easy to manage and evolve.
-
-    - Each microservice can be developed and deployed independently of other services.
-
-    - Each microservice can be scaled-out independently. For example, a catalog service or shopping basket service might need to be scaled-out more than an ordering service. Therefore, the resulting infrastructure will more efficiently consume resources when scaling out.
-
-    - Each microservice isolates any issues. For example, if there is an issue in a service it only impacts that service. The other services can continue to handle requests.
-
-    - Each microservice can use the latest technologies. Because microservices are autonomous and run side-by-side, the latest technologies and frameworks can be used, rather than being forced to use an older framework that might be used by a monolithic application.
+- Each microservice is relatively small, easy to manage and evolve.
+- Each microservice can be developed and deployed independently of other services.
+- Each microservice can be scaled-out independently. For example, a catalog service or shopping basket service might need to be scaled-out more than an ordering service. Therefore, the resulting infrastructure will more efficiently consume resources when scaling out.
+- Each microservice isolates any issues. For example, if there is an issue in a service it only impacts that service. The other services can continue to handle requests.
+- Each microservice can use the latest technologies. Because microservices are autonomous and run side-by-side, the latest technologies and frameworks can be used, rather than being forced to use an older framework that might be used by a monolithic application.
 
 However, a microservice based solution also has potential drawbacks:
 
-    - Choosing how to partition an application into microservices can be challenging, as each microservice has to be completely autonomous, end-to-end, including responsibility for its data sources.
+- Choosing how to partition an application into microservices can be challenging, as each microservice has to be completely autonomous, end-to-end, including responsibility for its data sources.
+- Developers must implement inter-service communication, which adds complexity and latency to the application.
+- Atomic transactions between multiple microservices usually aren't possible. Therefore, business requirements must embrace eventual consistency between microservices.
+- In production, there is an operational complexity in deploying and managing a system compromised of many independent services.
+- Direct client-to-microservice communication can make it difficult to refactor the contracts of microservices. For example, over time how the system is partitioned into services might need to change. A single service might split into two or more services, and two services might merge. When clients communicate directly with microservices, this refactoring work can break compatibility with client apps.
 
-    - Developers must implement inter-service communication, which adds complexity and latency to the application.
-
-    - Atomic transactions between multiple microservices usually aren't possible. Therefore, business requirements must embrace eventual consistency between microservices.
-
-    - In production, there is an operational complexity in deploying and managing a system compromised of many independent services.
-
-    - Direct client-to-microservice communication can make it difficult to refactor the contracts of microservices. For example, over time how the system is partitioned into services might need to change. A single service might split into two or more services, and two services might merge. When clients communicate directly with microservices, this refactoring work can break compatibility with client apps.
-
-# Containerization
+## Containerization
 
 Containerization is an approach to software development in which an application and its versioned set of dependencies, plus its environment configuration abstracted as deployment manifest files, are packaged together as a container image, tested as a unit, and deployed to a host operating system.
 
@@ -66,15 +58,11 @@ The advantage of a container-oriented development and deployment approach is tha
 
 The key concepts when creating and working with containers are:
 
-    - Container Host: The physical or virtual machine configured to host containers. The container host will run one or more containers.
-
-    - Container Image: An image consists of a union of layered filesystems stacked on top of each other, and is the basis of a container. An image does not have state and it never changes as it's deployed to different environments.
-
-    - Container: A container is a runtime instance of an image.
-
-    - Container OS Image: Containers are deployed from images. The container operating system image is the first layer in potentially many image layers that make up a container. A container operating system is immutable, and can't be modified.
-
-    - Container Repository: Each time a container image is created, the image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry, such as [Docker Hub](https://hub.docker.com/), so that they can be used across different container hosts.
+- Container Host: The physical or virtual machine configured to host containers. The container host will run one or more containers.
+- Container Image: An image consists of a union of layered filesystems stacked on top of each other, and is the basis of a container. An image does not have state and it never changes as it's deployed to different environments.
+- Container: A container is a runtime instance of an image.
+- Container OS Image: Containers are deployed from images. The container operating system image is the first layer in potentially many image layers that make up a container. A container operating system is immutable, and can't be modified.
+- Container Repository: Each time a container image is created, the image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry, such as [Docker Hub](https://hub.docker.com/), so that they can be used across different container hosts.
 
 Enterprises are increasingly adopting containers when implementing microservice based applications, and Docker has become the standard container implementation that has been adopted by most software platforms and cloud vendors.
 
@@ -104,7 +92,7 @@ With direct client-to-microservice communication, the mobile app makes requests 
 
 Direct client-to-microservice communication can have drawbacks when building a large and complex microservice based application, but it's more than adequate for a small application. When designing a large microservice based application with tens of microservices, consider using API gateway communication. For more information, see [.NET Microservices: Architecture for Containerized .NET Applications](https://aka.ms/microservicesebook).
 
-# Communication between microservices
+## Communication between microservices
 
 A microservices based application is a distributed system, potentially running on multiple machines. Each service instance is typically a process. Therefore, services must interact using an inter-process communication protocol, such as HTTP, TCP, Advanced Message Queuing Protocol (AMQP), or binary protocols, depending on the nature of each service.
 
@@ -135,7 +123,7 @@ This one-to-many communication approach uses events to implement business transa
 
 For information about the event bus implementation, see [.NET Microservices: Architecture for Containerized .NET Applications](https://aka.ms/microservicesebook).
 
-# Summary
+## Summary
 
 Microservices offer an approach to application development and deployment that's suited to the agility, scale, and reliability requirements of modern cloud applications. One of the main advantages of microservices is that they can be scaled-out independently, which means that a specific functional area can be scaled that requires more processing power or network bandwidth to support demand, without unnecessarily scaling areas of the application that are not experiencing increased demand.
 
