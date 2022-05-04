@@ -20,11 +20,11 @@ Internally, the MessagingCenter class uses weak references. This means that it w
 
 The eShopOnContainers mobile app uses the MessagingCenter class to communicate between loosely coupled components. The app defines three messages:
 
-- The AddProduct message is published by the CatalogViewModel class when an item is added to the shopping basket. In return, the BasketViewModel class subscribes to the message and increments the number of items in the shopping basket in response. In addition, the BasketViewModel class also unsubscribes from this message.
+    - The AddProduct message is published by the CatalogViewModel class when an item is added to the shopping basket. In return, the BasketViewModel class subscribes to the message and increments the number of items in the shopping basket in response. In addition, the BasketViewModel class also unsubscribes from this message.
 
-- The Filter message is published by the CatalogViewModel class when the user applies a brand or type filter to the items displayed from the catalogue. In return, the CatalogView class subscribes to the message and updates the UI so that only items that match the filter criteria are displayed.
+    - The Filter message is published by the CatalogViewModel class when the user applies a brand or type filter to the items displayed from the catalogue. In return, the CatalogView class subscribes to the message and updates the UI so that only items that match the filter criteria are displayed.
 
-- The ChangeTab message is published by the MainViewModel class when the CheckoutViewModel navigates to the MainViewModel following the successful creation and submission of a new order. In return, the MainView class subscribes to the message and updates the UI so that the **My profile** tab is active, to show the user's orders.
+    - The ChangeTab message is published by the MainViewModel class when the CheckoutViewModel navigates to the MainViewModel following the successful creation and submission of a new order. In return, the MainView class subscribes to the message and updates the UI so that the **My profile** tab is active, to show the user's orders.
 
 **Note:** While the MessagingCenter class permits communication between loosely-coupled classes, it does not offer the only architectural solution to this issue. For example, communication between a view model and a view can also be achieved by the binding engine and through property change notifications. In addition, communication between two view models can also be achieved by passing data during navigation.
 
