@@ -2,10 +2,9 @@
 
 Any app that accepts input from users should ensure that the input is valid. An app could, for example, check for input that contains only characters in a particular range, is of a certain length, or matches a particular format. Without validation, a user can supply data that causes the app to fail. Validation enforces business rules, and prevents an attacker from injecting malicious data.
 
-![](./media/image8.png)
-
 In the context of the Model-ViewModel-Model (MVVM) pattern, a view model or model will often be required to perform data validation and signal any validation errors to the view so that the user can correct them. The eShopOnContainers mobile app performs synchronous client-side validation of view model properties and notifies the user of any validation errors by highlighting the control that contains the invalid data, and by displaying error messages that inform the user of why the data is invalid. Figure 6-1 shows the classes involved in performing validation in the eShopOnContainers mobile app.
 
+![Validation classes in the eShopOnContainers mobile app](./media/image8.png)
 **Figure 6-1**: Validation classes in the eShopOnContainers mobile app
 
 View model properties that require validation are of type ValidatableObject<T>, and each ValidatableObject<T> instance has validation rules added to its Validations property. Validation is invoked from the view model by calling the Validate method of the ValidatableObject<T> instance, which retrieves the validation rules and executes them against the ValidatableObject<T> Value property. Any validation errors are placed into the Errors property of the ValidatableObject<T> instance, and the IsValid property of the ValidatableObject<T> instance is updated to indicate whether validation succeeded or failed.
@@ -196,8 +195,7 @@ For more information about behaviors, see [Implementing behaviors](#implementing
 
 The eShopOnContainers mobile app notifies the user of any validation errors by highlighting the control that contains the invalid data with a red line, and by displaying an error message that informs the user why the data is invalid below the control containing the invalid data. When the invalid data is corrected, the line changes to black and the error message is removed. Figure 6-2 shows the LoginView in the eShopOnContainers mobile app when validation errors are present.
 
-![](./media/image9.png)
-
+![Displaying validation errors during login](./media/image9.png)
 **Figure 6-2:** Displaying validation errors during login
 
 ## Highlighting a control that contains invalid data
@@ -359,10 +357,9 @@ namespace eShopOnContainers.iOS.Effects
 
 The OnAttached method retrieves the native control for the Xamarin.Forms Entry control, and updates the line color by calling the UpdateLineColor method. The OnElementPropertyChanged override responds to bindable property changes on the Entry control by updating the line color if the attached LineColor property changes, or the Height property of the Entry changes. For more information about effects, see [Effects](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/effects/) on the Xamarin Developer Center.
 
-![](./media/image10.png)
-
 When valid data is entered in the Entry control, it will apply a black line to the bottom of the control, to indicate that there is no validation error. Figure 6-3 shows an example of this.
 
+![Black line indicating no validation error](./media/image10.png)
 **Figure 6-3**: Black line indicating no validation error
 
 The Entry control also has a DataTrigger added to its Triggers collection. The following code example shows the DataTrigger:
@@ -383,10 +380,9 @@ The Entry control also has a DataTrigger added to its Triggers collection. The f
 </Entry>
 ```
 
-![](./media/image11.png)
-
 This DataTrigger monitors the UserName.IsValid property, and if it's value becomes false, it executes the Setter, which changes the LineColor attached property of the LineColorBehavior attached behavior to red. Figure 6-4 shows an example of this.
 
+![Red line indicating validation error](./media/image11.png)
 **Figure 6-4**: Red line indicating validation error
 
 The line in the Entry control will remain red while the entered data is invalid, otherwise it will change to black to indicate that the entered data is valid.

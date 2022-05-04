@@ -4,18 +4,16 @@ Developing client-server applications has resulted in a focus on building tiered
 
 Particularly concerning in the age of the cloud, is that individual components can't be easily scaled. A monolithic application contains domain-specific functionality, and is typically divided by functional layers such as front end, business logic, and data storage. A monolithic application is scaled by cloning the entire application onto multiple machines, as illustrated in Figure 8-1.
 
-![](./media/image13.png)
-
+![Monolithic application scaling approach](./media/image13.png)
 **Figure 8-1**: Monolithic application scaling approach
 
 ## Microservices
 
 Microservices offer a different approach to application development and deployment, an approach that's suited to the agility, scale, and reliability requirements of modern cloud applications. A microservices application is decomposed into independent components that work together to deliver the application's overall functionality. The term microservice emphasizes that applications should be composed of services small enough to reflect independent concerns, so that each microservice implements a single function. In addition, each microservice has well-defined contracts so that other microservices can communicate and share data with it. Typical examples of microservices include shopping carts, inventory processing, purchase subsystems, and payment processing.
 
-![](./media/image14.png)
-
 Microservices can scale-out independently, as compared to giant monolithic applications that scale together. This means that a specific functional area, that requires more processing power or network bandwidth to support demand, can be scaled rather than unnecessarily scaling-out other areas of the application. Figure 8-2 illustrates this approach, where microservices are deployed and scaled independently, creating instances of services across machines.
 
+![Microservices application scaling approach](./media/image14.png)
 **Figure 8-2**: Microservices application scaling approach
 
 Microservice scale-out can be nearly instantaneous, allowing an application to adapt to changing loads. For example, a single microservice in the web-facing functionality of an application might be the only microservice in the application that needs to scale out to handle additional incoming traffic.
@@ -48,8 +46,7 @@ A container is an isolated, resource controlled, and portable operating environm
 
 There are many similarities between containers and virtual machines, as illustrated in Figure 8-3.
 
-![](./media/image15.png)
-
+![Comparison of virtual machines and containers](./media/image15.png)
 **Figure 8-3**: Comparison of virtual machines and containers
 
 A container runs an operating system, has a file system, and can be accessed over a network as if it were a physical or virtual machine. However, the technology and concepts used by containers are very different from virtual machines. Virtual machines include the applications, the required dependencies, and a full guest operating system. Containers include the application and its dependencies, but share the operating system with other containers, running as isolated processes on the host operating system (aside from Hyper-V containers which run inside of a special virtual machine per container). Therefore, containers share resources and typically require fewer resources than virtual machines.
@@ -68,8 +65,7 @@ Enterprises are increasingly adopting containers when implementing microservice 
 
 The eShopOnContainers reference application uses Docker to host four containerized back-end microservices, as illustrated in Figure 8-4.
 
-![](./media/image16.png)
-
+![eShopOnContainers reference application back-end microservices](./media/image16.png)
 **Figure 8-4**: eShopOnContainers reference application back-end microservices
 
 The architecture of the back-end services in the reference application is decomposed into multiple autonomous sub-systems in the form of collaborating microservices and containers. Each microservice provides a single area of functionality: an identity service, a catalog service, an ordering service, and a basket service.
@@ -82,8 +78,7 @@ For more information about the reference application, see [.NET Microservices: A
 
 The eShopOnContainers mobile app communicates with the containerized back-end microservices using *direct client-to-microservice* communication, which is shown in Figure 8-5.
 
-![](./media/image17.png)
-
+![Direct client-to-microservice communication](./media/image17.png)
 **Figure 8-5**: Direct client-to-microservice communication
 
 With direct client-to-microservice communication, the mobile app makes requests to each microservice directly through its public endpoint, with a different TCP port per microservice. In production, the endpoint would typically map to the microservice's load balancer, which distributes requests across the available instances.
@@ -102,19 +97,17 @@ Asynchronous messaging based event-driven communication is critical when propaga
 
 An event bus allows publish-subscribe communication between microservices, without requiring the components to be explicitly aware of each other, as shown in Figure 8-6.
 
-![](./media/image18.png)
-
+![Publish-subscribe with an event bus](./media/image18.png)
 **Figure 8-6:** Publish-subscribe with an event bus
 
 From an application perspective, the event bus is simply a publish-subscribe channel exposed via an interface. However, the way the event bus is implemented can vary. For example, an event bus implementation could use RabbitMQ, Azure Service Bus, or other service buses such as NServiceBus and MassTransit. Figure 8-7 shows how an event bus is used in the eShopOnContainers reference application.
 
-![](./media/image19.png)
-
+![Asynchronous event-driven communication in the reference application](./media/image19.png)
 **Figure 8-7:** Asynchronous event-driven communication in the reference application
 
 The eShopOnContainers event bus, implemented using RabbitMQ, provides one-to-many asynchronous publish-subscribe functionality. This means that after publishing an event, there can be multiple subscribers listening for the same event. Figure 8-9 illustrates this relationship.
 
-![](./media/image20.png)
+![One-to-many communication](./media/image20.png)
 **Figure 8-9**: One-to-many communication
 
 This one-to-many communication approach uses events to implement business transactions that span multiple services, ensuring eventual consistency between the services. An eventual-consistent transaction consists of a series of distributed steps. Therefore, when the user-profile microservice receives the UpdateUser command, it updates the user's details in its database and publishes the UserUpdated event to the event bus. Both the basket microservice and the ordering microservice have subscribed to receive this event, and in response update their buyer information in their respective databases.

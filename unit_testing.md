@@ -35,8 +35,7 @@ public class OrderDetailViewModel : ViewModelBase
 
 The OrderDetailViewModel class has a dependency on the IOrderService type which the container resolves when it instantiates a OrderDetailViewModel object. However, rather than create an OrderService object to unit test the OrderDetailViewModel class, instead, replace the OrderService object with a mock for the purpose of the tests. Figure 10-1 illustrates this relationship.
 
-![](./media/image29.png)
-
+![Classes that implement the IOrderService interface](./media/image29.png)
 **Figure 10-1:** Classes that implement the IOrderService interface
 
 This approach allows the OrderService object to be passed into the OrderDetailViewModel class at runtime, and in the interests of testability, it allows the OrderMockService class to be passed into the OrderDetailViewModel class at test time. The main advantage of this approach is that it enables unit tests to be executed without requiring unwieldy resources such as web services, or databases.

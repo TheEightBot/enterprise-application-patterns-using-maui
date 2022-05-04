@@ -18,10 +18,11 @@ For authentication scenarios that make use of a local user data store, and that 
 
 OpenID Connect is an authentication layer on top of the OAuth 2.0 protocol. OAuth 2 is a protocol that allows applications to request access tokens from a security token service and use them to communicate with APIs. This delegation reduces complexity in both client applications and APIs since authentication and authorization can be centralized.
 
-The combination of OpenID Connect and OAuth 2.0 combine the two fundamental security concerns of authentication and API access, and IdentityServer 4 is an implementation of these protocols. ![](./media/image21.png)
+The combination of OpenID Connect and OAuth 2.0 combine the two fundamental security concerns of authentication and API access, and IdentityServer 4 is an implementation of these protocols.
 
 In applications that use direct client-to-microservice communication, such as the eShopOnContainers reference application, a dedicated authentication microservice acting as a Security Token Service (STS) can be used to authenticate users, as shown in Figure 9-1. For more information about direct client-to-microservice communication, see [Communication between client and microservices](#communication-between-client-and-microservices).
 
+![Authentication by a dedicated authentication microservice](./media/image21.png)
 **Figure 9-1:** Authentication by a dedicated authentication microservice
 
 The eShopOnContainers mobile app communicates with the identity microservice, which uses IdentityServer 4 to perform authentication, and access control for APIs. Therefore, the mobile app requests tokens from IdentityServer, either for authenticating a user or for accessing a resource:
@@ -199,18 +200,16 @@ For more information about authentication flows, see [Grant Types](https://ident
 
 For IdentityServer to issue tokens on behalf of a user, the user must sign-in to IdentityServer. However, IdentityServer doesn't provide a user interface or database for authentication. Therefore, in the eShopOnContainers reference application, ASP.NET Core Identity is used for this purpose.
 
-![](./media/image22.png)
-
 The eShopOnContainers mobile app authenticates with IdentityServer with the hybrid authentication flow, which is illustrated in Figure 9-2.
 
+![High-level overview of the sign-in process](./media/image22.png)
 **Figure 9-2:** High-level overview of the sign-in process
 
 A sign-in request is made to <base endpoint>:5105/connect/authorize. Following successful authentication, IdentityServer returns an authentication response containing an authorization code and an identity token. The authorization code is then sent to <base endpoint>:5105/connect/token, which responds with access, identity, and refresh tokens.
 
 The eShopOnContainers mobile app signs-out of IdentityServer by sending a request to endpoint>:5105/connect/endsession, with additional parameters. After sign-out occurs, IdentityServer responds by sending a post logout redirect URI back to the mobile app. Figure 9-3 illustrates this process.
 
-![](./media/image23.png)
-
+![High-level overview of the sign-out process](./media/image23.png)
 **Figure 9-3:** High-level overview of the sign-out process
 
 In the eShopOnContainers mobile app, communication with IdentityServer is performed by the IdentityService class, which implements the IIdentityService interface. This interface specifies that the implementing class must provide CreateAuthorizationRequest, CreateLogoutRequest, and GetTokenAsync methods.
@@ -263,8 +262,7 @@ This method creates the URI for IdentityServer's [authorization endpoint](https:
 
 The returned URI is stored in the LoginUrl property of the LoginViewModel class. When the IsLogin property becomes true, the WebView in the LoginView becomes visible. The WebView data binds its Source property to the LoginUrl property of the LoginViewModel class, and so makes a sign-in request to IdentityServer when the LoginUrl property is set to IdentityServer's authorization endpoint. When IdentityServer receives this request and the user isn't authenticated, the WebView will be redirected to the configured login page, which is shown in Figure 9-4.
 
-![](./media/image24.png)
-
+![Login page displayed by the WebView](./media/image24.png)
 **Figure 9-4:** Login page displayed by the WebView
 
 Once login is completed, the WebView will be redirected to a return URI. This WebView navigation will cause the NavigateAsync method in the LoginViewModel class to be executed, which is shown in the following code example:
@@ -378,10 +376,9 @@ If an unauthorized user attempts to access a controller or action that's marked 
 
 **Note:** Parameters can be specified on the Authorize attribute to restrict an API to specific users. For more information, see [Authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction) on the Microsoft Documentation Center.
 
-![](./media/image25.png)
-
 IdentityServer can be integrated into the authorization workflow so that the access tokens it provides control authorization. This approach is shown in Figure 9-5.
 
+![Authorization by access token](./media/image25.png)
 **Figure 9-5:** Authorization by access token
 
 The eShopOnContainers mobile app communicates with the identity microservice and requests an access token as part of the authentication process. The access token is then forwarded to the APIs exposed by the ordering and basket microservices as part of the access requests. Access tokens contain information about the client, and the user. APIs then use that information to authorize access to their data. For information about how to configure IdentityServer to protect APIs, see [Configuring API resources](#configuring-api-resources).

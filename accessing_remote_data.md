@@ -35,7 +35,6 @@ The CatalogService class is used to manage the data retrieval process from the c
 Figure 10-1 shows the interaction of classes that read catalog data from the catalog microservice for displaying by the CatalogView.
 
 ![Retrieving data from the catalog microservice](./media/image26.png)
-
 **Figure 10-1**: Retrieving data from the catalog microservice
 
 When the CatalogView is navigated to, the OnInitialize method in the CatalogViewModel class is called. This method retrieves catalog data from the catalog microservice, as demonstrated in the following code example:
@@ -140,7 +139,6 @@ The BasketService class is used to manage the data retrieval and update process 
 Figure 10-2 shows the interaction of classes that send the basket data displayed by the BasketView, to the basket microservice.
 
 ![Sending data to the basket microservice](./media/image27.png)
-
 **Figure 10-2**: Sending data to the basket microservice
 
 When an item is added to the shopping basket, the ReCalculateTotalAsync method in the BasketViewModel class is called. This method updates the total value of items in the basket, and sends the basket data to the basket microservice, as demonstrated in the following code example:
@@ -213,7 +211,6 @@ This method uses an instance of the RedisBasketRepository class to persist the b
 Figure 10-3 shows the interactions of classes that delete basket data from the basket microservice, for the CheckoutView.
 
 ![Deleting data from the basket microservice](./media/image28.png)
-
 **Figure 10-3**: Deleting data from the basket microservice
 
 When the checkout process is invoked, the CheckoutAsync method in the CheckoutViewModel class is called. This method creates a new order, before clearing the shopping basket, as demonstrated in the following code example:

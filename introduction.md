@@ -46,8 +46,7 @@ This guide includes a sample application, eShopOnContainers, that's an online st
 
 Figure 1-1 provides a high-level overview of the architecture of the sample application.
 
-![](./media/image3.png)
-
+![eShopOnContainers high-level architecture](./media/image3.png)
 **Figure 1-1**: eShopOnContainers high-level architecture
 
 The sample application ships with three client apps:
@@ -71,10 +70,9 @@ For information about the implementation of the backend services, see [.NET Micr
 
 ## Mobile app
 
-![](./media/image4.jpeg)
-
 This guide focuses on building cross-platform enterprise apps using Xamarin.Forms, and uses the eShopOnContainers mobile app as an example. Figure 1-2 shows the pages from the eShopOnContainers mobile app that provide the functionality outlined earlier.
 
+![The eShopOnContainers mobile app](./media/image4.jpg)
 **Figure 1-2**: The eShopOnContainers mobile app
 
 The mobile app consumes the backend services provided by the eShopOnContainers reference application. However, it can be configured to consume data from mock services for those who wish to avoid deploying the backend services.
@@ -116,7 +114,7 @@ The eShopOnContainers mobile app solution organizes the source code and other re
 
 The classes from the eShopOnContainers mobile app can be re-used in any Xamarin.Forms app with little or no modification.
 
-## **eShopOnContainers.Core project**
+## eShopOnContainers.Core project
 
 The eShopOnContainers.Core PCL project contains the following folders:
 
@@ -138,7 +136,7 @@ The eShopOnContainers.Core PCL project contains the following folders:
 | ViewModels | Contains the application logic that's exposed to pages. |
 | Views | Contains the pages for the app. |
 
-## **Platform projects**
+## Platform projects
 
 The platform projects contain effect implementations, custom renderer implementations, and other platform-specific resources.
 

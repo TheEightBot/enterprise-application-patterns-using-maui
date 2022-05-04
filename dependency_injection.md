@@ -42,8 +42,7 @@ There are many dependency injection containers available, with the eShopOnContai
 
 In Autofac, the IContainer interface provides the dependency injection container. Figure 3-1 shows the dependencies when using this container, which instantiates an IOrderService object and injects it into the ProfileViewModel class.
 
-![](./media/image6.png)
-
+![Dependencies when using dependency injection](./media/image6.png)
 **Figure 3-1:** Dependencies when using dependency injection
 
 At runtime, the container must know which implementation of the IOrderService interface it should instantiate, before it can instantiate a ProfileViewModel object. This involves:

@@ -103,8 +103,7 @@ Each time the BaseEndpoint property is set, the UpdateEndpoint method is called.
 
 In the eShopOnContainers mobile app, the SettingsView exposes two user settings. These settings allow configuration of whether the app should retrieve data from microservices that are deployed as Docker containers, or whether the app should retrieve data from mock services that don't require an internet connection. When choosing to retrieve data from containerized microservices, a base endpoint URL for the microservices must be specified. Figure 7-1 shows the SettingsView when the user has chosen to retrieve data from containerized microservices.
 
-![](./media/image12.png)
-
+![User settings exposed by the eShopOnContainers mobile app](./media/image12.png)
 **Figure 7-1**: User settings exposed by the eShopOnContainers mobile app
 
 Data binding can be used to retrieve and set settings exposed by the Settings class. This is achieved by controls on the view binding to view model properties that in turn access properties in the Settings class, and raising a property changed notification if the settings value has changed. For information about how the eShopOnContainers mobile app constructs view models and associates them to views, see [Automatically creating a view model with a view model locator](#automatically-creating-a-view-model-with-a-view-model-locator).
