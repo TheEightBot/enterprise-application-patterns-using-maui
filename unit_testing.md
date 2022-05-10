@@ -119,7 +119,7 @@ public void AddCatalogItemCommandSendsAddProductMessageTest()
     var catalogService = new CatalogMockService();
     var catalogViewModel = new CatalogViewModel(catalogService);
 
-    Xamarin.Forms.MessagingCenter.Subscribe<CatalogViewModel, CatalogItem>(
+    Microsoft MAUI.MessagingCenter.Subscribe<CatalogViewModel, CatalogItem>(
         this, MessageKeys.AddProduct, (sender, arg) =>
     {
         messageReceived = true;

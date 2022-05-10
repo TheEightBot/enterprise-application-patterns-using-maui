@@ -36,7 +36,7 @@ There are several advantages to using a dependency injection container:
 - A container facilitates testability by allowing dependencies to be mocked.
 - A container increases maintainability by allowing new classes to be easily added to the app.
 
-In the context of a Xamarin.Forms app that uses MVVM, a dependency injection container will typically be used for registering and resolving view models, and for registering services and injecting them into view models.
+In the context of a Microsoft MAUI app that uses MVVM, a dependency injection container will typically be used for registering and resolving view models, and for registering services and injecting them into view models.
 
 There are many dependency injection containers available, with the eShopOnContainers mobile app using Autofac to manage the instantiation of view model and service classes in the app. Autofac facilitates building loosely coupled apps, and provides all of the features commonly found in dependency injection containers, including methods to register type mappings and object instances, resolve objects, manage object lifetimes, and inject dependent objects into constructors of objects that it resolves. For more information about Autofac, see [Autofac](http://autofac.readthedocs.io/en/latest/index.html) on readthedocs.io.
 

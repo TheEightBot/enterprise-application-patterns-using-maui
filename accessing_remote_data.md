@@ -299,9 +299,9 @@ It's also possible that a cache might fill up if data is allowed to remain for t
 
 The eShopOnContainers mobile app consumes remote product images that benefit from being cached. These images are displayed by the Image control, and the CachedImage control provided by the [FFImageLoading](https://www.nuget.org/packages/Xamarin.FFImageLoading.Forms/) library.
 
-The Xamarin.Forms Image control supports caching of downloaded images. Caching is enabled by default, and will store the image locally for 24 hours. In addition, the expiration time can be configured with the CacheValidity property. For more information, see [Downloaded Image Caching](https://developer.xamarin.com/guides/xamarin-forms/user-interface/images/#Downloaded_Image_Caching) on the Xamarin Developer Center.
+The Microsoft MAUI Image control supports caching of downloaded images. Caching is enabled by default, and will store the image locally for 24 hours. In addition, the expiration time can be configured with the CacheValidity property. For more information, see [Downloaded Image Caching](https://developer.xamarin.com/guides/microsoft-maui/user-interface/images/#Downloaded_Image_Caching) on the Microsoft Developer Center.
 
-FFImageLoading's CachedImage control is a replacement for the Xamarin.Forms Image control, providing additional properties that enable supplementary functionality. Amongst this functionality, the control provides configurable caching, while supporting error and loading image placeholders. The following code example shows how the eShopOnContainers mobile app uses the CachedImage control in the ProductTemplate, which is the data template used by the ListView control in the CatalogView:
+FFImageLoading's CachedImage control is a replacement for the Microsoft MAUI Image control, providing additional properties that enable supplementary functionality. Amongst this functionality, the control provides configurable caching, while supporting error and loading image placeholders. The following code example shows how the eShopOnContainers mobile app uses the CachedImage control in the ProductTemplate, which is the data template used by the ListView control in the CatalogView:
 
 ```xml
 <ffimageloading:CachedImage 

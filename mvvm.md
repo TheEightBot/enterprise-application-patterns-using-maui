@@ -1,6 +1,6 @@
 # MVVM
 
-The Xamarin.Forms developer experience typically involves creating a user interface in XAML, and then adding code-behind that operates on the user interface. As apps are modified, and grow in size and scope, complex maintenance issues can arise. These issues include the tight coupling between the UI controls and the business logic, which increases the cost of making UI modifications, and the difficulty of unit testing such code.
+The Microsoft MAUI developer experience typically involves creating a user interface in XAML, and then adding code-behind that operates on the user interface. As apps are modified, and grow in size and scope, complex maintenance issues can arise. These issues include the tight coupling between the UI controls and the business logic, which increases the cost of making UI modifications, and the difficulty of unit testing such code.
 
 The Model-View-ViewModel (MVVM) pattern helps to cleanly separate the business and presentation logic of an application from its user interface (UI). Maintaining a clean separation between application logic and the UI helps to address numerous development issues and can make an application easier to test, maintain, and evolve. It can also greatly improve code re-use opportunities and allows developers and UI designers to more easily collaborate when developing their respective parts of an app.
 
@@ -26,7 +26,7 @@ The key to using MVVM effectively lies in understanding how to factor app code i
 
 The view is responsible for defining the structure, layout, and appearance of what the user sees on screen. Ideally, each view is defined in XAML, with a limited code-behind that does not contain business logic. However, in some cases, the code-behind might contain UI logic that implements visual behavior that is difficult to express in XAML, such as animations.
 
-In a Xamarin.Forms application, a view is typically a Page-derived or ContentView-derived class. However, views can also be represented by a data template, which specifies the UI elements to be used to visually represent an object when it's displayed. A data template as a view does not have any code-behind, and is designed to bind to a specific view model type.
+In a Microsoft MAUI application, a view is typically a Page-derived or ContentView-derived class. However, views can also be represented by a data template, which specifies the UI elements to be used to visually represent an object when it's displayed. A data template as a view does not have any code-behind, and is designed to bind to a specific view model type.
 
 **Tip:** Avoid enabling and disabling UI elements in the code-behind
 
@@ -62,9 +62,9 @@ Model classes are typically used in conjunction with services or repositories th
 
 ## Connecting view models to views
 
-View models can be connected to views by using the data-binding capabilities of Xamarin.Forms. There are many approaches that can be used to construct views and view models and associate them at runtime. These approaches fall into two categories, known as view first composition, and view model first composition. Choosing between view first composition and view model first composition is an issue of preference and complexity. However, all approaches share the same aim, which is for the view to have a view model assigned to its BindingContext property.
+View models can be connected to views by using the data-binding capabilities of Microsoft MAUI. There are many approaches that can be used to construct views and view models and associate them at runtime. These approaches fall into two categories, known as view first composition, and view model first composition. Choosing between view first composition and view model first composition is an issue of preference and complexity. However, all approaches share the same aim, which is for the view to have a view model assigned to its BindingContext property.
 
-With view first composition the app is conceptually composed of views that connect to the view models they depend on. The primary benefit of this approach is that it makes it easy to construct loosely coupled, unit testable apps because the view models have no dependence on the views themselves. It's also easy to understand the structure of the app by following its visual structure, rather than having to track code execution to understand how classes are created and associated. In addition, view first construction aligns with the Xamarin Forms navigation system that's responsible for constructing pages when navigation occurs, which makes a view model first composition complex and misaligned with the platform.
+With view first composition the app is conceptually composed of views that connect to the view models they depend on. The primary benefit of this approach is that it makes it easy to construct loosely coupled, unit testable apps because the view models have no dependence on the views themselves. It's also easy to understand the structure of the app by following its visual structure, rather than having to track code execution to understand how classes are created and associated. In addition, view first construction aligns with the Microsoft Maui's navigation system that's responsible for constructing pages when navigation occurs, which makes a view model first composition complex and misaligned with the platform.
 
 With view model first composition the app is conceptually composed of view models, with a service being responsible for locating the view for a view model. View model first composition feels more natural to some developers, since the view creation can be abstracted away, allowing them to focus on the logical non-UI structure of the app. In addition, it allows view models to be created by other view models. However, this approach is often complex and it can become difficult to understand how the various parts of the app are created and associated.
 
@@ -190,7 +190,7 @@ public abstract class ExtendedBindableObject : BindableObject
 }
 ```
 
-Xamarin.Form's BindableObject class implements the INotifyPropertyChanged interface, and provides an OnPropertyChanged method. The ExtendedBindableObject class provides the RaisePropertyChanged method to invoke property change notification, and in doing so uses the functionality provided by the BindableObject class.
+Microsoft MAUI's BindableObject class implements the INotifyPropertyChanged interface, and provides an OnPropertyChanged method. The ExtendedBindableObject class provides the RaisePropertyChanged method to invoke property change notification, and in doing so uses the functionality provided by the BindableObject class.
 
 Each view model class in the eShopOnContainers mobile app derives from the ViewModelBase class, which in turn derives from the ExtendedBindableObject class. Therefore, each view model class uses the RaisePropertyChanged method in the ExtendedBindableObject class to provide property change notification. The following code example shows how the eShopOnContainers mobile app invokes property change notification by using a lambda expression:
 
@@ -215,13 +215,13 @@ Note that using a lambda expression in this way involves a small performance cos
 
 In mobile apps, actions are typically invoked in response to a user action, such as a button click, that can be implemented by creating an event handler in the code-behind file. However, in the MVVM pattern, the responsibility for implementing the action lies with the view model, and placing code in the code-behind should be avoided.
 
-Commands provide a convenient way to represent actions that can be bound to controls in the UI. They encapsulate the code that implements the action, and help to keep it decoupled from its visual representation in the view. Xamarin.Forms includes controls that can be declaratively connected to a command, and these controls will invoke the command when the user interacts with the control.
+Commands provide a convenient way to represent actions that can be bound to controls in the UI. They encapsulate the code that implements the action, and help to keep it decoupled from its visual representation in the view. Microsoft MAUI includes controls that can be declaratively connected to a command, and these controls will invoke the command when the user interacts with the control.
 
 Behaviors also allow controls to be declaratively connected to a command. However, behaviors can be used to invoke an action that's associated with a range of events raised by a control. Therefore, behaviors address many of the same scenarios as command-enabled controls, while providing a greater degree of flexibility and control. In addition, behaviors can also be used to associate command objects or methods with controls that were not specifically designed to interact with commands.
 
 ## Implementing commands
 
-View models typically expose command properties, for binding from the view, that are object instances that implement the ICommand interface. A number of Xamarin.Forms controls provide a Command property, which can be data bound to an ICommand object provided by the view model. The ICommand interface defines an Execute method, which encapsulates the operation itself, a CanExecute method, which indicates whether the command can be invoked, and a CanExecuteChanged event that occurs when changes occur that affect whether the command should execute. The Command and Command<T> classes, provided by Xamarin.Forms, implement the ICommand interface, where T is the type of the arguments to Execute and CanExecute.
+View models typically expose command properties, for binding from the view, that are object instances that implement the ICommand interface. A number of Microsoft MAUI controls provide a Command property, which can be data bound to an ICommand object provided by the view model. The ICommand interface defines an Execute method, which encapsulates the operation itself, a CanExecute method, which indicates whether the command can be invoked, and a CanExecuteChanged event that occurs when changes occur that affect whether the command should execute. The Command and Command<T> classes, provided by Microsoft MAUI, implement the ICommand interface, where T is the type of the arguments to Execute and CanExecute.
 
 Within a view model, there should be an object of type Command or Command<T> for each public property in the view model of type ICommand. The Command or Command<T> constructor requires an Action callback object that's called when the ICommand.Execute method is invoked. The CanExecute method is an optional constructor parameter, and is a Func that returns a bool.
 
@@ -268,9 +268,9 @@ Behaviors allow functionality to be added to UI controls without having to subcl
 
 A behavior that's attached to a control through attached properties is known as an *attached behavior*. The behavior can then use the exposed API of the element to which it is attached to add functionality to that control, or other controls, in the visual tree of the view. The eShopOnContainers mobile app contains the LineColorBehavior class, which is an attached behavior. For more information about this behavior, see [Displaying validation errors](#displaying-validation-errors).
 
-A Xamarin.Forms behavior is a class that derives from the Behavior or Behavior<T> class, where T is the type of the control to which the behavior should apply. These classes provide OnAttachedTo and OnDetachingFrom methods, which should be overridden to provide logic that will be executed when the behavior is attached to and detached from controls.
+A Microsoft MAUI behavior is a class that derives from the Behavior or Behavior<T> class, where T is the type of the control to which the behavior should apply. These classes provide OnAttachedTo and OnDetachingFrom methods, which should be overridden to provide logic that will be executed when the behavior is attached to and detached from controls.
 
-In the eShopOnContainers mobile app, the BindableBehavior<T> class derives from the Behavior<T> class. The purpose of the BindableBehavior<T> class is to provide a base class for Xamarin.Forms behaviors that require the BindingContext of the behavior to be set to the attached control.
+In the eShopOnContainers mobile app, the BindableBehavior<T> class derives from the Behavior<T> class. The purpose of the BindableBehavior<T> class is to provide a base class for Microsoft MAUI behaviors that require the BindingContext of the behavior to be set to the attached control.
 
 The BindableBehavior<T> class provides an overridable OnAttachedTo method that sets the BindingContext of the behavior, and an overridable OnDetachingFrom method that cleans up the BindingContext. In addition, the class stores a reference to the attached control in the AssociatedObject property.
 

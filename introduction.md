@@ -20,7 +20,7 @@ An effective remedy for these challenges is to partition an app into discrete, l
 
 However, there are many issues that must be resolved when partitioning an app into discrete, loosely coupled components. These include:
 
-- Deciding how to provide a clean separation of concerns between the user interface controls and their logic. One of the most important decisions when creating a Xamarin.Forms enterprise app is whether to place business logic in code-behind files, or whether to create a clean separation of concerns between the user interface controls and their logic, in order to make the app more maintainable and testable. For more information, see [Model-View-ViewModel](#_Toc484430871).
+- Deciding how to provide a clean separation of concerns between the user interface controls and their logic. One of the most important decisions when creating a Microsoft MAUI enterprise app is whether to place business logic in code-behind files, or whether to create a clean separation of concerns between the user interface controls and their logic, in order to make the app more maintainable and testable. For more information, see [Model-View-ViewModel](#_Toc484430871).
 - Determining whether to use a dependency injection container. Dependency injection containers reduce the dependency coupling between objects by providing a facility to construct instances of classes with their dependencies injected, and manage their lifetime based on the configuration of the container. For more information, see [Dependency injection](#_Toc484430886).
 - Choosing between platform provided eventing and loosely coupled message-based communication between components that are inconvenient to link by object and type references. For more information, see Introduction to [Communicating between loosely coupled components](#_Toc484430892).
 - Deciding how to navigate between pages, including how to invoke navigation, and where navigation logic should reside. For more information, see [Navigation](#_Toc484430899).
@@ -29,7 +29,7 @@ However, there are many issues that must be resolved when partitioning an app in
 - Determining how to access remote data from web services, including how to reliably retrieve data, and how to cache data. For more information, see [Accessing remote data](#_Toc484430939).
 - Deciding how to test the app. For more information, see [Unit testing](#_Toc484430950).
 
-This guide provides guidance on these issues, and focuses on the core patterns and architecture for building a cross-platform enterprise app using Xamarin.Forms. The guidance aims to help to produce adaptable, maintainable, and testable code, by addressing common Xamarin.Forms enterprise app development scenarios, and by separating the concerns of presentation, presentation logic, and entities through support for the Model-View-ViewModel (MVVM) pattern.
+This guide provides guidance on these issues, and focuses on the core patterns and architecture for building a cross-platform enterprise app using Microsoft MAUI. The guidance aims to help to produce adaptable, maintainable, and testable code, by addressing common Microsoft MAUI enterprise app development scenarios, and by separating the concerns of presentation, presentation logic, and entities through support for the Model-View-ViewModel (MVVM) pattern.
 
 ## Sample application
 
@@ -53,7 +53,7 @@ The sample application ships with three client apps:
 
 - An MVC application developed with ASP.NET Core.
 - A Single Page Application (SPA) developed with Angular 2 and Typescript. This approach for web applications avoids performing a round-trip to the server with each operation.
-- A mobile app developed with Xamarin.Forms, which supports iOS, Android, and the Universal Windows Platform (UWP).
+- A mobile app developed with Microsoft MAUI, which supports iOS, Android, and the Universal Windows Platform (UWP).
 
 For information about the web applications, see [Architecting and Developing Modern Web Applications with ASP.NET Core and Microsoft Azure](http://aka.ms/WebAppEbook).
 
@@ -70,14 +70,14 @@ For information about the implementation of the backend services, see [.NET Micr
 
 ## Mobile app
 
-This guide focuses on building cross-platform enterprise apps using Xamarin.Forms, and uses the eShopOnContainers mobile app as an example. Figure 1-2 shows the pages from the eShopOnContainers mobile app that provide the functionality outlined earlier.
+This guide focuses on building cross-platform enterprise apps using Microsoft MAUI, and uses the eShopOnContainers mobile app as an example. Figure 1-2 shows the pages from the eShopOnContainers mobile app that provide the functionality outlined earlier.
 
 ![The eShopOnContainers mobile app](./media/image4.jpg)
 **Figure 1-2**: The eShopOnContainers mobile app
 
 The mobile app consumes the backend services provided by the eShopOnContainers reference application. However, it can be configured to consume data from mock services for those who wish to avoid deploying the backend services.
 
-The eShopOnContainers mobile app exercises the following Xamarin.Forms functionality:
+The eShopOnContainers mobile app exercises the following Microsoft MAUI functionality:
 
 - XAML
 - Controls
@@ -93,7 +93,7 @@ The eShopOnContainers mobile app exercises the following Xamarin.Forms functiona
 - MessagingCenter
 - Custom Controls
 
-For more information about this functionality, see the [Xamarin.Forms documentation](https://developer.xamarin.com/guides/xamarin-forms/) on the Xamarin Developer Center, and [Creating Mobile Apps with Xamarin.Forms](https://aka.ms/xamebook).
+For more information about this functionality, see the [Microsoft MAUI documentation](https://developer.xamarin.com/guides/xamarin-forms/) on the Microsoft Developer Center, and [Creating Mobile Apps with Microsoft MAUI](https://aka.ms/xamebook).
 
 In addition, unit tests are provided for some of the classes in the eShopOnContainers mobile app.
 
@@ -112,7 +112,7 @@ The eShopOnContainers mobile app solution organizes the source code and other re
 | eShopOnContainers.TestRunner.Windows | This project is the Universal Windows Platform test runner for the eShopOnContainers.UnitTests project. |
 | eShopOnContainers.UnitTests | This project contains unit tests for the eShopOnContainers.Core project. |
 
-The classes from the eShopOnContainers mobile app can be re-used in any Xamarin.Forms app with little or no modification.
+The classes from the eShopOnContainers mobile app can be re-used in any Microsoft MAUI app with little or no modification.
 
 ## eShopOnContainers.Core project
 
@@ -142,6 +142,6 @@ The platform projects contain effect implementations, custom renderer implementa
 
 ## Summary
 
-Xamarin's cross-platform mobile app development tools and platforms provide a comprehensive solution for B2E, B2B, and B2C mobile client apps, providing the ability to share code across all target platforms (iOS, Android, and Windows) and helping to lower the total cost of ownership. Apps can share their user interface and app logic code, while retaining the native platform look and feel.
+Microsoft's cross-platform mobile app development tools and platforms provide a comprehensive solution for B2E, B2B, and B2C mobile client apps, providing the ability to share code across all target platforms (iOS, Android, and Windows) and helping to lower the total cost of ownership. Apps can share their user interface and app logic code, while retaining the native platform look and feel.
 
 Developers of enterprise apps face several challenges that can alter the architecture of the app during development. Therefore, it's important to build an app so that it can be modified or extended over time. Designing for such adaptability can be difficult, but typically involves partitioning an app into discrete, loosely coupled components that can be easily integrated together into an app.
