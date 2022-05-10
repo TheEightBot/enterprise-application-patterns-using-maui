@@ -1,6 +1,6 @@
 # Navigation
 
-Xamarin.Forms includes support for page navigation, which typically results from the user's interaction with the UI or from the app itself as a result of internal logic-driven state changes. However, navigation can be complex to implement in apps that use the Model-View-ViewModel (MVVM) pattern, as the following challenges must be met:
+Microsoft MAUI includes support for page navigation, which typically results from the user's interaction with the UI or from the app itself as a result of internal logic-driven state changes. However, navigation can be complex to implement in apps that use the Model-View-ViewModel (MVVM) pattern, as the following challenges must be met:
 
 - How to identify the view to be navigated to, using an approach that does not introduce tight coupling and dependencies between views.
 - How to coordinate the process by which the view to be navigated to is instantiated and initialized. When using MVVM, the view and view model need to be instantiated and associated with each other via the view's binding context. When an app is using a dependency injection container, the instantiation of views and view models might require a specific construction mechanism.
@@ -67,7 +67,7 @@ The ViewModelBase class stores the NavigationService instance in a NavigationSer
 
 ## Handling navigation requests
 
-Xamarin.Forms provides the NavigationPage class, which implements a hierarchical navigation experience in which the user is able to navigate through pages, forwards and backwards, as desired. For more information about hierarchical navigation, see [Hierarchical Navigation](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/navigation/hierarchical/) on the Xamarin Developer Center.
+Microsoft MAUI provides the NavigationPage class, which implements a hierarchical navigation experience in which the user is able to navigate through pages, forwards and backwards, as desired. For more information about hierarchical navigation, see [Hierarchical Navigation](https://developer.xamarin.com/guides/microsoft-maui/application-fundamentals/navigation/hierarchical/) on the Microsoft Developer Center.
 
 Rather than use the NavigationPage class directly, the eShopOnContainers app wraps the NavigationPage class in the CustomNavigationView class, as shown in the following code example:
 
@@ -278,6 +278,6 @@ An app might need to interact with the user during a navigation operation, so th
 
 ## Summary
 
-Xamarin.Forms includes support for page navigation, which typically results from the user's interaction with the UI, or from the app itself, as a result of internal logic-driven state changes. However, navigation can be complex to implement in apps that use the MVVM pattern.
+Microsoft MAUI includes support for page navigation, which typically results from the user's interaction with the UI, or from the app itself, as a result of internal logic-driven state changes. However, navigation can be complex to implement in apps that use the MVVM pattern.
 
 This chapter presented a NavigationService class, which is used to perform view model-first navigation from view models. Placing navigation logic in view model classes means that the logic can be exercised through automated tests. In addition, the view model can then implement logic to control navigation to ensure that certain business rules are enforced.

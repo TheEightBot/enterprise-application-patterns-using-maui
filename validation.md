@@ -232,7 +232,7 @@ The Entry control consumes an explicit style, which is shown in the following co
 </Style>
 ```
 
-This style sets the ApplyLineColor and LineColor attached properties of the LineColorBehavior attached behavior on the Entry control. For more information about styles, see [Styles](https://developer.xamarin.com/guides/xamarin-forms/user-interface/styles/) on the Xamarin Developer Center.
+This style sets the ApplyLineColor and LineColor attached properties of the LineColorBehavior attached behavior on the Entry control. For more information about styles, see [Styles](https://developer.xamarin.com/guides/microsoft-maui/user-interface/styles/) on the Microsoft Developer Center.
 
 When the value of the ApplyLineColor attached property is set, or changes, the LineColorBehavior attached behavior executes the OnApplyLineColorChanged method, which is shown in the following code example:
 
@@ -355,7 +355,7 @@ namespace eShopOnContainers.iOS.Effects
 }
 ```
 
-The OnAttached method retrieves the native control for the Xamarin.Forms Entry control, and updates the line color by calling the UpdateLineColor method. The OnElementPropertyChanged override responds to bindable property changes on the Entry control by updating the line color if the attached LineColor property changes, or the Height property of the Entry changes. For more information about effects, see [Effects](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/effects/) on the Xamarin Developer Center.
+The OnAttached method retrieves the native control for the Microsoft MAUI Entry control, and updates the line color by calling the UpdateLineColor method. The OnElementPropertyChanged override responds to bindable property changes on the Entry control by updating the line color if the attached LineColor property changes, or the Height property of the Entry changes. For more information about effects, see [Effects](https://developer.xamarin.com/guides/microsoft-maui/application-fundamentals/effects/) on the Microsoft Developer Center.
 
 When valid data is entered in the Entry control, it will apply a black line to the bottom of the control, to indicate that there is no validation error. Figure 6-3 shows an example of this.
 
