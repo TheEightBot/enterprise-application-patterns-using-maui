@@ -1,4 +1,4 @@
-# Dependency injection
+# Dependency Injection
 
 Typically, a class constructor is invoked when instantiating an object, and any values that the object needs are passed as arguments to the constructor. This is an example of dependency injection, and specifically is known as *constructor injection*. The dependencies the object needs are injected into the constructor.
 
