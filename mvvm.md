@@ -78,7 +78,7 @@ The following sections discuss the main approaches to connecting view models to 
 
 The simplest approach is for the view to declaratively instantiate its corresponding view model in XAML. When the view is constructed, the corresponding view model object will also be constructed. This approach is demonstrated in the following code example:
 
-```xml
+```xaml
 <ContentPage ... xmlns:local="clr-namespace:eShop">
     <ContentPage.BindingContext>
         <local:LoginViewModel />
